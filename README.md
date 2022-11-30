@@ -1,4 +1,4 @@
-# change directory to coctail-o-mania folder (not cocktail-o-maker), does not run otherwise.
+
 
 ## Project setup
 ```
