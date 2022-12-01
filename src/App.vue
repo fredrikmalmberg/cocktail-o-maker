@@ -1,21 +1,25 @@
 <template>
   <v-app>
     <v-main>
-      <HelloWorld/>
+      <TopBar/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TopBar from './components/TopBar.vue'
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    TopBar,
   },
-
+  computed:{
+    theme(){
+      return (this.$vuetify.theme.dark) ? 'dark' : 'light'
+    }
+  },
   data: () => ({
     //
   }),
