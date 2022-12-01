@@ -1,6 +1,7 @@
 
 
-<!-- This file contains the TopBar-component of page.-->
+<!-- This file contains the TopBar-component of page. 
+    This page currently has a button that is empty, TODO when navigation is added -->
 
 
 <template>
@@ -9,8 +10,9 @@
       dark
     >
     <a href="/">
-    <img class="mr-3" :src="require('/src/assets/logo.png')" height="40"/></a>
+    <img class="mr-3" :src="require('/src/assets/logo.png')" height="30" /></a>
         <v-spacer></v-spacer>
+        <v-btn>Test.btn</v-btn>
     </v-app-bar>
 </template>
 
@@ -22,7 +24,10 @@
 </script>
 
 <style scoped>
+.v-btn{
+margin-right: 2%;
+}
   img{
-    margin-left: 5%;
+    margin-right: 100%;
   }
   </style>
