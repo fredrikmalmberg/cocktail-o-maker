@@ -1,6 +1,10 @@
 <template>
-  <TopBar/>
-  <HelloWorld msg="Welcome to Coctail-o-Maker"/>
+  <v-app>
+    <v-main>
+        <TopBar/>
+      <HelloWorld/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
@@ -9,10 +13,16 @@ import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
+
   components: {
     TopBar,
-    HelloWorld
-  }
+    HelloWorld,
+  },
+
+  data: () => ({
+    //
+  }),
+
 }
 </script>
 
@@ -24,5 +34,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 10px;
-}
-</style>
+  
+  </style>
