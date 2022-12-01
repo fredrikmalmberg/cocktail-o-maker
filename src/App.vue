@@ -1,15 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+  <TopBar/>
   <HelloWorld msg="Welcome to Coctail-o-Maker"/>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import TopBar from './components/TopBar.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    TopBar
   }
 }
 </script>
