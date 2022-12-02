@@ -17,18 +17,16 @@
           class="ma-1"
           color="grey"
           plain
-        >
-          Yes
+        ><router-link to="/searchAPITest">Yes</router-link>
         </v-btn>
-  
+                
         <v-btn
           :loading="loading"
           class="ma-1"
           color="error"
           plain
           @click="remove"
-        >
-          No
+        ><router-link to="/">No</router-link>
         </v-btn>
       </v-sheet>
     </div>
