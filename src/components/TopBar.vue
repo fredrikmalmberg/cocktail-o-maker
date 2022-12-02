@@ -12,11 +12,10 @@
             <v-spacer>
                 <nav>
                     <router-link to="/">Home</router-link> |
-                    <router-link to="/searchAPITest">API Test (Search)</router-link> |
-                    <router-link to="/detailsAPITest">API Test (Details)</router-link>
+                    <router-link to="/search">Search</router-link> 
                   </nav>
 
-                
+
             </v-spacer>
             <v-btn>Test.btn.empty</v-btn>
         </v-app-bar>

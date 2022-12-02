@@ -11,14 +11,17 @@ function SearchResultsView(props){
 
     function searchResultCB(option)
     {
-        function drinkClickedACB(e){
-            
-            console.log(e)
+        function drinkClickedACB(){
+            props.drinkClickedEvent(option);
         }
-        return (<span onClick = {drinkClickedACB} key = {option.idDrink} class = "searchResult">
-                <img  src={""+ option.strDrinkThumb}  height = '100' />
-                <div class = "drinkName">{option.strDrink}</div>
-            </span>);
+        return (
+                <span onClick = {drinkClickedACB} key = {option.idDrink} class = "searchResult">
+                    <img  src={""+ option.strDrinkThumb}  height = '100' />
+                    <div class = "drinkName">{option.strDrink}</div>
+                </span>
+                );
+
+
     }
 
     

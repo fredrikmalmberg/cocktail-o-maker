@@ -42,7 +42,8 @@ export default {
 
       this.error = this.post = null
       this.loading = true
-      const { isFetching, error, data } = getDrinkDetails(11007);
+      
+      const { isFetching, error, data } = getDrinkDetails(this.$route.params.id);
       if (error){
         console.log(error);
         this.error = error;

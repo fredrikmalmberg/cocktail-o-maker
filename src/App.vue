@@ -2,8 +2,6 @@
   <v-app>
     <v-main>
       <TopBar/>
-      <!--FM: This navigation will not be used but added here temporarily to display functionality of the router -->
-      
       <router-view/>
     </v-main>
   </v-app>

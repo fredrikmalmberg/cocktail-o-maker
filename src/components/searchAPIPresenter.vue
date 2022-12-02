@@ -33,16 +33,21 @@ export default {
       this.loading = true
       const { isFetching, error, data } = searchDrinkByName("long island");
       if (error){
-        //console.log(error);
         this.error = error;
       }
       if (data){
-        //console.log(data);
-        console.log(data);
         this.post = data;
       }
       this.loading = isFetching;
     },
+    
+    drinkClickedACB(option){
+      console.log("clicked drink", option);
+      this.$router.push({
+        name: 'drinkDetails',
+        params: { id: option.idDrink },
+      })
+    }
   },
 }
 </script>
@@ -54,7 +59,7 @@ export default {
     <div v-if="error" class="error">{{ error }}</div>
 
     <div v-if="post" class="content">
-      <SearchResultsView :searchResults=post />
+      <SearchResultsView :searchResults="post" :drinkClickedEvent="drinkClickedACB"/>
       <p>RAW PAYLOAD: {{ post }}</p>
     </div>
   </div>

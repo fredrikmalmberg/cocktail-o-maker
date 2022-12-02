@@ -10,15 +10,17 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/searchAPITest',
-    name: 'API Test (Search)',
+    path: '/search',
+    name: 'search',
     component: searchAPITest
   },
-  {
-    path: '/detailsAPITest',
-    name: 'API Test (Details)',
-    component: detailsAPITest
-  }
+
+  { 
+    path: '/drinkdetails/:id', 
+    name: 'drinkDetails', 
+    component: detailsAPITest 
+  },
+  
 ]
 
 const router = createRouter({
