@@ -9,7 +9,15 @@
         >
         <a href="/">
         <img class="mr-3" :src="require('/src/assets/logo.png')" height="40" /></a>
-            <v-spacer></v-spacer>
+            <v-spacer>
+                <nav>
+                    <router-link to="/">Home</router-link> |
+                    <router-link to="/searchAPITest">API Test (Search)</router-link> |
+                    <router-link to="/detailsAPITest">API Test (Details)</router-link>
+                  </nav>
+
+                
+            </v-spacer>
             <v-btn>Test.btn.empty</v-btn>
         </v-app-bar>
     </template>

@@ -3,11 +3,7 @@
     <v-main>
       <TopBar/>
       <!--FM: This navigation will not be used but added here temporarily to display functionality of the router -->
-      <nav>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/searchAPITest">API Test (Search)</router-link> |
-        <router-link to="/detailsAPITest">API Test (Details)</router-link>
-      </nav>
+      
       <router-view/>
     </v-main>
   </v-app>
