@@ -53,6 +53,7 @@ export default {
 
     <div v-if="post" class="content">
       <SearchResultsView :searchResults="post" :drinkClickedEvent="drinkClickedACB"/>
+      <p>RAW PAYLOAD: {{ post }}</p>
     </div>
   </div>
 </template>
