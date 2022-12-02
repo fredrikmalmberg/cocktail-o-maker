@@ -6,6 +6,7 @@ function SearchResultsView(props){
             {
                 props.searchResults.drinks.map(searchResultCB)
             }
+            <p>RAW PAYLOAD: { props.searchResults }</p>
         </div>
     );
 

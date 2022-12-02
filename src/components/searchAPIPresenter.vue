@@ -1,8 +1,4 @@
-
-
-
 <script>
-
 import {searchDrinkByName} from '../cocktailDBIntegration.js';
 import SearchResultsView from '../views/searchResultsView.js'
 export default {
@@ -15,14 +11,11 @@ export default {
     }
   },
   created() {
-    // watch the params of the route to fetch the data again
     this.$watch(
       () => this.$route.params,
       () => {
         this.fetchData()
       },
-      // fetch the data when the view is created and the data is
-      // already being observed
       { immediate: true }
     )
   },
@@ -40,7 +33,7 @@ export default {
       }
       this.loading = isFetching;
     },
-    
+
     drinkClickedACB(option){
       console.log("clicked drink", option);
       this.$router.push({
@@ -60,7 +53,6 @@ export default {
 
     <div v-if="post" class="content">
       <SearchResultsView :searchResults="post" :drinkClickedEvent="drinkClickedACB"/>
-      <p>RAW PAYLOAD: {{ post }}</p>
     </div>
   </div>
 </template>
