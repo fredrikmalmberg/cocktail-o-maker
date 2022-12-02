@@ -9,11 +9,13 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+
   {
-    path: '/search',
+    path: '/search/:searchstring',
     name: 'search',
     component: searchAPITest
   },
+
 
   { 
     path: '/drinkdetails/:id', 

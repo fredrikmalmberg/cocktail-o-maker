@@ -24,7 +24,7 @@ export default {
     fetchData() {
       this.error = this.post = null
       this.loading = true
-      const { isFetching, error, data } = searchDrinkByName("long island");
+      const { isFetching, error, data } = searchDrinkByName(this.$route.params.searchstring);
       if (error){
         this.error = error;
       }
@@ -47,6 +47,7 @@ export default {
 
 <template>
   <div class="post">
+  
     <div v-if="loading" class="loading">Loading...</div>
 
     <div v-if="error" class="error">{{ error }}</div>
