@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
-
+import {resolvePromise} from "../resolvePromise"
+import {getIngredientList, getCategorieList, getGlassesList, getAlcoolicFilterList} from '../cocktailDBIntegration.js';
 // OBS: Right now with an example of how it can look
 
 
@@ -10,13 +11,54 @@ import {defineStore} from "pinia";
 
 export const useDrinkStore = defineStore("drinkStore", {
     state: () => ({
-        drinks: [
-            {idDrink: 1, strDrink: "Margarita", isFav: false},
-            {idDrink: 2, strDrink: "Gin&Tonic", isFav: true}]
+        currentCocktail:null,
+        drinks: [],
+        ingredientsPromiseState:{} ,
+        glassesPromiseState: {},
+        alcoolFiltersPromiseState: {},
+        categoriesPromiseState:{}
     }),
+    actions:{
+        getIngredients(){
+            resolvePromise(getIngredientList(),this.ingredientsPromiseState);
+        },
+        getGlassesList(){
+            resolvePromise(getGlassesList(),this.glassesPromiseState);
+        },
+        getAlcoolFilterList(){
+            resolvePromise(getAlcoolicFilterList(),this.alcoolFiltersPromiseState);
+        },
+        getCategoriesList(){
+            resolvePromise(getCategorieList(),this.categoriesPromiseState);
+        }
+    },
     getters: {
         favorites() {
             return this.drinks.filter(d => d.isFav)
+        },
+        arrayIngredients(){
+            function keepNameCB(ingredient){
+                return ingredient.strIngredient1;
+            }
+            return this.ingredientsPromiseState.post.drinks.map(keepNameCB);
+        },
+        arrayGlasses(){
+            function keepNameCB(glasse){
+                return glasse.strGlass;
+            }
+            return this.glassesPromiseState.post.drinks.map(keepNameCB);
+        },
+        arrayAlcoolFilter(){
+            function keepNameCB(alcoolFilter){
+                return alcoolFilter.strAlcoholic;
+            }
+            return this.alcoolFiltersPromiseState.post.drinks.map(keepNameCB);
+        },
+        arrayCategories(){
+            function keepNameCB(categorie){
+                return categorie.strCategory;
+            }
+            return this.categoriesPromiseState.post.drinks.map(keepNameCB);
         },
     }
 

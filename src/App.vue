@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <TopBar/>
+      <TopBar :user="userStore"/>
       <router-view/>
     </v-main>
   </v-app>
@@ -9,6 +9,7 @@
 
 <script>
 import TopBar from './components/TopBar.vue'
+import {useUserStore} from './stores/UserStore'
 //import HomePage from './components/HomePage.vue'
 
 export default {
@@ -18,14 +19,15 @@ export default {
     TopBar,
     //HomePage,
   },
+  setup () {
+      const userStore = useUserStore();
+      return { userStore };
+  },
   computed:{
     theme(){
       return (this.$vuetify.theme.dark) ? 'dark' : 'light'
-    }
+    },
   },
-  data: () => ({
-    //
-  }),
 }
 </script>
 
@@ -35,7 +37,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 

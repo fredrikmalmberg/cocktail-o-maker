@@ -17,7 +17,8 @@
           class="ma-1"
           color="grey"
           plain
-        ><router-link to="/searchAPITest">Yes</router-link>
+          @click="userStore.confirmedUnderTwenty()"
+        ><router-link to="/search">Yes</router-link>
         </v-btn>
                 
         <v-btn
@@ -30,10 +31,16 @@
         </v-btn>
       </v-sheet>
     </div>
-  </template>
+</template>
 
 <script>
+  import {useUserStore} from '../../stores/UserStore'
+
   export default {
+    setup () {
+      const userStore = useUserStore();
+      return { userStore };
+    },
     data: () => ({     
     }),
   }
@@ -44,4 +51,4 @@ div{
  padding-top: 50px;
  
   }
-  </style>
+</style>

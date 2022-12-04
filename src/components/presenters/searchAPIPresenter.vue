@@ -1,5 +1,5 @@
 <script>
-import {searchDrinkByName} from '../cocktailDBIntegration.js';
+import {searchDrinkByName} from '../../cocktailDBIntegration.js';
 import SearchResultsView from '../views/searchResultsView.js'
 export default {
   components: {SearchResultsView},

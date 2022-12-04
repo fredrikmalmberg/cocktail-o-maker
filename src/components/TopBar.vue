@@ -2,37 +2,38 @@
     This page currently has a button that is empty, TODO when navigation is added -->
 
 
-    <template>
-        <v-app-bar
-          color=#ffffff
-          dark
-        >
-        <a href="/">
-        <img class="mr-3" :src="require('/src/assets/logo.png')" height="40" /></a>
-            <v-spacer>
+<template>
+    <v-app-bar
+      color=#ffffff
+      dark
+    >
+    <a href="/">
+    <img class="mr-3" :src="require('/src/assets/logo.png')" height="40" /></a>
+        <v-spacer>
 
-                <nav>
-                    <router-link to="/">Home</router-link> |
-                    <v-btn><router-link to="/search">Search</router-link></v-btn>
+            <nav>
+                <router-link to="/">Home</router-link> |
+                <v-btn><router-link to="/search">Search</router-link></v-btn>
+            </nav>
 
-                  </nav>
 
+        </v-spacer>
+        <v-btn>Log in</v-btn>
+    </v-app-bar>
+</template>
 
-            </v-spacer>
-            <v-btn>Log in</v-btn>
-        </v-app-bar>
-    </template>
-    
-    <script>
-      export default {
-        data: () => ({     
-        }),
-      }
-    </script>
-    
-    <style scoped>
-    img{
-        padding-top: 15px;
-        margin-right: 100%;
-      }
-      </style>
+<script>
+
+  export default {
+    props: ['user'],
+    data: () => ({     
+    }),
+  }
+</script>
+
+<style scoped>
+img{
+    padding-top: 15px;
+    margin-right: 100%;
+  }
+  </style>

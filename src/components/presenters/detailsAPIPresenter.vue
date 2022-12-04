@@ -13,7 +13,7 @@
 
 <script>
 /* eslint-disable */
-import {getDrinkDetails} from '../cocktailDBIntegration.js';
+import {getDrinkDetails} from '../../cocktailDBIntegration.js';
 export default {
   data() {
     return {
