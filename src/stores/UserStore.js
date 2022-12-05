@@ -13,11 +13,14 @@ export const useUserStore = defineStore("userStore", {
        login:false,
        username:"hugo",
        underTwenty: true,
-       favoritesCocktails:{},
+       favourites:[11410],
     }),
     actions:{
         confirmedUnderTwenty() {
             this.underTwenty = false;
+        },
+        addFavourite(drinkID){
+            this.favourites = [drinkID, ...this.favourites];
         }
     }
 })
