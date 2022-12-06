@@ -1,5 +1,4 @@
-<!-- This file contains the TopBar-component of page. 
-    This page currently has a button that is empty, TODO when navigation is added -->
+<!-- This file contains the TopBar-component of page. -->
 
 
 <template>
@@ -9,14 +8,7 @@
     >
     <a href="/">
     <img class="mr-3" :src="require('/src/assets/logo.png')" height="40" /></a>
-        <v-spacer>
-
-            <nav>
-                <v-btn><router-link to="/search">Search</router-link></v-btn>
-            </nav>
-
-
-        </v-spacer>
+        <v-spacer></v-spacer>
         <v-btn><router-link to="/user/hugo">User Home</router-link></v-btn>
         <v-btn>Log in</v-btn>
     </v-app-bar>
