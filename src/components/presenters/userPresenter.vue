@@ -8,17 +8,20 @@
         <h2>Recommended drinks based on your favourites</h2>
         <p>TBA</p>
         <h2>Recommended drinks based on your ingredients</h2>
-        <p>TBA</p>
+        <p>TBA (We need payed API access for this)</p>
         <h2>My Ingredients</h2>
-        <p>TBA</p>
+        <div v-for="(i, index) in ingredients" v-bind:key="index">
+            <li><ingredientThumb :ingredient="i" /></li>
+        </div>
         
 </template>
 
 <script>
 import userView from '../views/userView.vue'
 import drinkThumb from '../views/drinkThumb.vue'
+import ingredientThumb from '../views/ingredientThumb.vue'
 import { useUserStore } from '../../stores/UserStore';
-import { getDrinkDetails } from '../../cocktailDBIntegration';
+import { getDrinkDetails, getIngredientDetails } from '../../cocktailDBIntegration';
 
 function extractValues (input) {
         if (input.data){
@@ -33,6 +36,7 @@ export default {
     components:{
         userView,
         drinkThumb,
+        ingredientThumb,
     },
     methods:{
     drinkClickedACB(id){
@@ -51,6 +55,7 @@ export default {
     return {
     userName: this.$route.params.name,
     favourites : this.userStore.favourites.map(getDrinkDetails).map(extractValues),
+    ingredients : this.userStore.ingredients.map(getIngredientDetails).map(extractValues),
     }
   },
   
