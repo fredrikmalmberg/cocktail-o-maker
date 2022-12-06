@@ -1,22 +1,12 @@
-
-<template>
-  <div class="post">
-    <div v-if="loading" class="loading">Loading...</div>
-
-    <div v-if="error" class="error">{{ error }}</div>
-
-    <div v-if="post" class="content">
-      <v-btn @click="addToFavourites()">Add to favourites</v-btn>
-      <p>PAYLOAD: {{ post }}</p> 
-    </div>
-  </div>
-</template>
-
 <script>
 /* eslint-disable */
 import {getDrinkDetails} from '../../cocktailDBIntegration.js';
 import { useUserStore } from '../../stores/UserStore';
+import DetailsView from '../views/detailsView.js'
+import { useDrinkStore } from '../../stores/DrinkStore';
+
 export default {
+  components: {DetailsView},
   data() {
     return {
       loading: false,
@@ -64,3 +54,18 @@ export default {
 /* eslint-disable */
 
 </script>
+
+
+<template>
+  <div class="post">
+    <div v-if="loading" class="loading">Loading...</div>
+
+    <div v-if="error" class="error">{{ error }}</div>
+
+    <div v-if="post" class="content">
+      <v-btn @click="addToFavourites()">Add to favourites</v-btn>
+      <DetailsView :detailsDrinks="post" :drinkClickedEvent="drinkClickedACB"/>
+      
+    </div>
+  </div>
+</template>
