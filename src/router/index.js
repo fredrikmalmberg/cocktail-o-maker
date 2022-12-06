@@ -10,7 +10,12 @@ const routes = [
     name: 'home',
     component: HomeView
   },
-
+  {
+    path: '/search',
+    name: 'searcher',
+    component: searchAPITest
+  },
+  
   {
     path: '/search/:searchstring',
     name: 'search',

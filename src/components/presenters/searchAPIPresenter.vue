@@ -1,8 +1,9 @@
 <script>
 import {searchDrinkByName} from '../../cocktailDBIntegration.js';
 import SearchResultsView from '../views/searchResultsView.js'
+import searchFormView from '../views/searchFormView.vue'
 export default {
-  components: {SearchResultsView},
+  components: {SearchResultsView, searchFormView},
   data() {
     return {
       loading: false,
@@ -46,6 +47,7 @@ export default {
 </script>
 
 <template>
+  <searchFormView @doSearch="fetchSearch" @updateQuery="newQuery"/>
   <div class="post">
   
     <div v-if="loading" class="loading">Loading...</div>
