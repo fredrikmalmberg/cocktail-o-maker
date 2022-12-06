@@ -13,7 +13,7 @@
             </div>
             <div v-if="drinks.ingredientsPromiseState.post">
                 <v-select
-                v-model="igredientsSelected"
+                v-model="ingredientsSelected"
                 :items="drinks.arrayIngredients"
                 attach
                 chips
@@ -53,10 +53,31 @@ export default{
     },
       data: () => ({
         glassesSelected: [],
-        igredientsSelected: [],
-        filterAlcoolSelected: [],
+        ingredientsSelected: [],
+        filterAlcoolSelected: "",
         categoriesSelected: []
   }),
+    watch: {
+    // whenever question changes, this function will run
+    glassesSelected(newGlasses) {
+      this.updatefilter('glasses', newGlasses);
+    },
+    ingredientsSelected(newIngredients) {
+      this.updatefilter('ingredients', newIngredients);
+    },
+    filterAlcoolSelected(newFilterAlcool) {
+      this.updatefilter('alcoolFilter', newFilterAlcool)
+    },
+    categoriesSelected(newCategories) {
+      this.updatefilter('categories', newCategories)
+    }
+
+  },
+  methods:{
+    updatefilter(type, value){
+        this.$emit('updatefilter',type, value);
+    }
+  }
 }
 </script>
 <style scoped>

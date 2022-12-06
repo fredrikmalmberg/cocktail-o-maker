@@ -2,7 +2,7 @@
     <v-main>
         <searchFormView @doSearch="fetchSearch" @updateQuery="newQuery"/>
         <div class="gridSearch">
-          <searchSidebarView :drinks="drinkStore"/>
+          <searchSidebarView :drinks="drinkStore" @updatefilter="updateFilter"/>
           <searchResultsView :searchResult="resultPromiseState" @drinkClickedEvent="drinkClickedACB"/>
         </div>
     </v-main>
@@ -21,7 +21,7 @@
     components:{
         searchResultsView,
         searchFormView,
-        searchSidebarView
+        searchSidebarView,
     },
     mounted(){
       resolvePromise(searchDrinkByName(this.query), this.resultPromiseState);
@@ -29,7 +29,12 @@
     data: () => ({  
         resultPromiseState:{},
         query:"",
-        filters: {}
+        filters: {
+          glasses: [],
+          ingredients: [],
+          alcoolFilter: "",
+          categories: []
+        }
     }),
     setup () {
       const userStore = useUserStore();
@@ -50,6 +55,9 @@
       newQuery(value){
         console.log(value);
         this.query = value;
+      },
+      updateFilter(type, value){
+        this.filters[type] = value;
       },
       drinkClickedACB(option){
         console.log("clicked drink", option);
