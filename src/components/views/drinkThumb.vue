@@ -1,5 +1,5 @@
 <script>
-/* eslint-disable */
+
 
 export default {
    props: {
@@ -28,7 +28,7 @@ export default {
         }
     }
 }
-/* eslint-disable */
+
 </script>
 
 
@@ -36,7 +36,7 @@ export default {
 <template>
     <div class="searchResult">
         <v-card
-            elevation="2" @click.native= "drinkClickedACB(favourite)">
+            elevation="2" @click= "drinkClickedACB(favourite)">
                 <v-img
                 height="100"
                 v-bind:src=imgUrl(favourite)

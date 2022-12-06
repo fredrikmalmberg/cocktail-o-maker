@@ -15,48 +15,19 @@
 </template>
 
 <script>
-
-//import {useUserStore} from '../../stores/UserStore'
 import userView from '../views/userView.vue'
 import drinkThumb from '../views/drinkThumb.vue'
 import { useUserStore } from '../../stores/UserStore';
 import { getDrinkDetails } from '../../cocktailDBIntegration';
 
-function getFavourite(drinkID){
-    //const err = null
-    //const post = null
-    //const loading = true
-    //const drinkName = "";
-      
-    const { isFetching, error, data } = getDrinkDetails(drinkID);
-    if (error){
-    //console.log(error);
-    //err = error;
-    }
-    if (data){
-    //console.log(data);
-    //const drinkName = data.drinks;
-    //console.log(data)
-    //post = data;
-    }
-    //loading = isFetching;
-    return {isFetching, error, data}
-    //return drinkID;
-}
-
 function extractValues (input) {
-        
         if (input.data){
-            console.log(input.data);
             return input.data;
         }
         else{
             return "Loading..";
         }
-        
     }
-
-
 
 export default {
     components:{
@@ -79,13 +50,11 @@ export default {
 
     return {
     userName: this.$route.params.name,
-    favourites : this.userStore.favourites.map(getFavourite).map(extractValues),
-    //favourites:this.userStore.favourites,
+    favourites : this.userStore.favourites.map(getDrinkDetails).map(extractValues),
     }
   },
   
 }
-/* eslint-disable */
 </script>
 
 <style scoped>
