@@ -18,7 +18,7 @@
           color="grey"
           plain
           @click="userStore.confirmedUnderTwenty()"
-        ><router-link to="/search">Yes</router-link>
+        ><router-link to="/research">Yes</router-link>
         </v-btn>
                 
         <v-btn
