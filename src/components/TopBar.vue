@@ -12,7 +12,6 @@
         <v-spacer>
 
             <nav>
-                <router-link to="/">Home</router-link> |
                 <v-btn><router-link to="/search">Search</router-link></v-btn>
             </nav>
 
