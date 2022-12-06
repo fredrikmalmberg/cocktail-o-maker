@@ -6,6 +6,7 @@
     <div v-if="error" class="error">{{ error }}</div>
 
     <div v-if="post" class="content">
+      <v-btn @click="addToFavourites()">Add to favourites</v-btn>
       <p>PAYLOAD: {{ post }}</p> 
     </div>
   </div>
@@ -14,12 +15,14 @@
 <script>
 /* eslint-disable */
 import {getDrinkDetails} from '../../cocktailDBIntegration.js';
+import { useUserStore } from '../../stores/UserStore';
 export default {
   data() {
     return {
       loading: false,
       post: null,
       error: null,
+      userStore : useUserStore(),
     }
   },
   created() {
@@ -35,9 +38,11 @@ export default {
     )
   },
 
-
-
   methods: {
+    addToFavourites(drinkID){
+      this.userStore.addFavourite(parseInt(this.$route.params.id));
+    },
+
     fetchData() {
 
       this.error = this.post = null

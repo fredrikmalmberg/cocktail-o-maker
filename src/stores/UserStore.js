@@ -13,7 +13,7 @@ export const useUserStore = defineStore("userStore", {
        login:false,
        username:"hugo",
        underTwenty: true,
-       favourites:[11410],
+       favourites:[11410,11417],
     }),
     actions:{
         confirmedUnderTwenty() {

@@ -18,6 +18,7 @@
 
 
         </v-spacer>
+        <v-btn><router-link to="/user/hugo">User Home</router-link></v-btn>
         <v-btn>Log in</v-btn>
     </v-app-bar>
 </template>
