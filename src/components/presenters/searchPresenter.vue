@@ -3,7 +3,7 @@
         <searchFormView @doSearch="fetchSearch" @updateQuery="newQuery"/>
         <div class="gridSearch">
           <searchSidebarView :drinks="drinkStore"/>
-          <searchResultsView :searchResult="resultPromiseState"/>
+          <searchResultsView :searchResult="resultPromiseState" @drinkClickedEvent="drinkClickedACB"/>
         </div>
     </v-main>
 </template>
@@ -48,7 +48,15 @@
         resolvePromise(searchDrinkFirstLetter(this.query), this.resultPromiseState);
       },
       newQuery(value){
+        console.log(value);
         this.query = value;
+      },
+      drinkClickedACB(option){
+        console.log("clicked drink", option);
+        this.$router.push({
+          name: 'drinkDetails',
+          params: { id: option },
+        })
       }
     },
 

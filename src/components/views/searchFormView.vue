@@ -3,7 +3,7 @@
         <v-form>
             <v-text-field @input="changeQuery" label="Search"></v-text-field>
             <v-btn @click="validate">
-        Validate
+        Search
       </v-btn>
 
         </v-form>

@@ -11,6 +11,7 @@
                         <v-card
                         elevation="2">
                             <v-img
+                            @click="detail(element.idDrink)"
                             height="250"
                             v-bind:src="element.strDrinkThumb"
                             ></v-img>
@@ -24,7 +25,6 @@
                             size="14"
                             ></v-rating>
                         </v-card>
-
                     </div>
                 </div>        
             </div>
@@ -40,7 +40,12 @@ export default{
     props:['searchResult'],
    data: () => ({
     }),
-
+    methods:{
+        detail(idDrink){
+            console.log(idDrink);
+            this.$emit('drinkClickedEvent',idDrink);
+        }
+    }
 }
 </script>
 
