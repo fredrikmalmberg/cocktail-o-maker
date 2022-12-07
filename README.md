@@ -22,6 +22,22 @@ We still have to implement the user, the filter, a page for searching ingredient
 ## PROJECT FILE STRUCTURE ##
 We use a router for navigation between pages. We use presenters and views.
 
+TopBar.vue (Shows the topbar with logout button)
+├── presenters
+│   ├── HomePagePresenter.vue (Shows the start page with a mock login/under 20 selector)
+│   ├── detailsAPIPresenter.vue (Api call for the drinkdetails + addfavourite callback => detailsView.vue)
+│   ├── searchPresenter.vue
+│   └── userPresenter.vue (Showing username through userView.vue + Api call for the favourites => userView.vue + )
+└── views
+    ├── detailsView.js  (redundant file..)
+    ├── detailsView.vue (Displays the recipe for a drink)
+    ├── drinkThumb.vue (Displays a single drink name and thumbnail)
+    ├── ingredientThumb.vue (Displays a single ingredients name)
+    ├── searchFormView.vue
+    ├── searchResultView.vue
+    ├── searchSidebarView.vue
+    └── userView.vue (Displays the username recieved from the presenter)
+
 
 
 ## Project setup
