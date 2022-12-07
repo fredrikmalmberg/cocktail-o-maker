@@ -19,12 +19,12 @@ export default {
     TopBar,
     //HomePage,
   },
-  setup () {
-      const userStore = useUserStore();
-      return { userStore };
+  setup() {
+    const userStore = useUserStore();
+    return {userStore};
   },
-  computed:{
-    theme(){
+  computed: {
+    theme() {
       return (this.$vuetify.theme.dark) ? 'dark' : 'light'
     },
   },

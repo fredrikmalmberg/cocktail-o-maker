@@ -17,7 +17,7 @@ A simple search function is implemented. When clicking on a drink, you get some 
 You are also able to add drinks to the mockup-users favorites. 
 
 ## What you still plan to do ##
-We still have to implement the user, filter the page if user is underage, multi-ingredient search and the ranking/review system.
+We still have to implement the user, filter the page if user is underage, filtered search, multi-ingredient search and the ranking/review system.
 We also have to work on structuring the code and keeping presenters/views separate. 
 
 ## PROJECT FILE STRUCTURE ##

@@ -1,11 +1,11 @@
 <script>
 export default {
-   props: ["userName"],
+  props: ["userName"],
 }
 </script>
 
 <template>
-    <h1>User Home</h1>
+  <h1>User Home</h1>
   <p class="userName">Username: {{ userName }}</p>
 </template>
 
