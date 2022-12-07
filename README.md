@@ -27,19 +27,21 @@ TopBar.vue (Shows the topbar with logout button)
 ├── presenters
 │   ├── HomePagePresenter.vue (Shows the start page with a mock login/under 20 selector)
 │   ├── detailsAPIPresenter.vue (Api call for the drinkdetails + addfavourite callback => detailsView.vue)
-│   ├── searchPresenter.vue
+│   ├── searchPresenter.vue (Call API for search + display, send and get informations from the different search views)
 │   └── userPresenter.vue (Showing username through userView.vue + Api call for the favourites => drinkThumb.vue)
 └── views
     ├── detailsView.js  (redundant file..)
     ├── detailsView.vue (Displays the recipe for a drink)
     ├── drinkThumb.vue (Displays a single drink name and thumbnail)
     ├── ingredientThumb.vue (Displays a single ingredients name)
-    ├── searchFormView.vue
-    ├── searchResultView.vue
-    ├── searchSidebarView.vue
+    ├── searchFormView.vue (Display an input box and search boutton, emit click and input event listeners)
+    ├── searchResultView.vue (Display the data of the PromiseStateSearch saved in the component state of searchPresenter)
+    ├── searchSidebarView.vue (Display the different filters available and emit an event listener when you update filters selected)
     └── userView.vue (Displays the username recieved from the presenter)
 ```
+### searchPresenter workflow
 
+![alt text](./searchPresenter.png)
 
 ## Project setup
 ```
