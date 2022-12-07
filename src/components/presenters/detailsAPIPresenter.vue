@@ -63,9 +63,11 @@ export default {
     <div v-if="error" class="error">{{ error }}</div>
 
     <div v-if="post" class="content">
-      <v-btn @click="addToFavourites()">Add to favourites</v-btn>
-      <DetailsView :detailsDrinks="post" :drinkClickedEvent="drinkClickedACB"/>
+      <v-btn><router-link to="/research">BACK</router-link></v-btn> 
       
+      <DetailsView :detailsDrinks="post" :drinkClickedEvent="drinkClickedACB"/>
+      <v-spacer></v-spacer>
+      <v-btn @click="addToFavourites()">Add to favourites</v-btn>
     </div>
   </div>
 </template>
