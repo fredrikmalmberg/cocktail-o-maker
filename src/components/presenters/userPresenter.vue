@@ -13,6 +13,7 @@
         <div v-for="(i, index) in ingredients" v-bind:key="index">
             <li><ingredientThumb :ingredient="i" /></li>
         </div>
+        <p>TBA (Link to add ingredients..)</p>
         
 </template>
 
