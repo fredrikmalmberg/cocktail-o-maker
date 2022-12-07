@@ -1,23 +1,24 @@
 ## DESCRIPTION ##
-In simple terms Cocktail-o-Maker is an interactive website which allows the users to search for drink recipies.
-
-However, it is a lot more than that. The users create an account, verify their age according to the drinking laws, 
-and are able to favorise and rate drink recipies and ingredients.
+Cocktail-o-Maker is an interactive website where users can search for cocktail recipes.
+The users can create an account, verify their age according to the drinking laws 
+(filtered page with mocktails if user is underage)
+and are then able to add drinks to favorites and rate drinks/write reviews. 
 
 It is also a space for the ones who want to make the most of what they have, since users will be able to list their 
 ingredients that they have at home and find cocktails accordingly.
 
 
 ## What you have done ##
-We have used the API , which provides data of the coctails such as the ingredients, measures, a picture etc. and 
+We have used the API "thecocktaildb" , which provides data of the cocktails such as the ingredients, measures, a picture etc. and 
 based the website around this data.
 
 Currently, we do not have users implemented but instead made a mockup to verify their age. 
-
-Search of drinks implemented, drinkdetails are implemented and also able to save drinks to a mockup user.
+A simple search function is implemented. When clicking on a drink, you get some information. 
+You are also able to add drinks to the mockup-users favorites. 
 
 ## What you still plan to do ##
-We still have to implement the user, the filter, a page for searching ingredients and the ranking system.
+We still have to implement the user, filter the page if user is underage, multi-ingredient search and the ranking/review system.
+We also have to work on structuring the code and keeping presenters/views separate. 
 
 ## PROJECT FILE STRUCTURE ##
 We use a router for navigation between pages. We use presenters and views.
