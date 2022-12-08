@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!-- This file contains the HomePage. Currently contains two buttons.-->
 
 
@@ -32,10 +33,26 @@
         <router-link to="/">No</router-link>
       </v-btn>
     </v-sheet>
+=======
+<template>
+  <div>
+    <h1>Login</h1>
+    <FacebookLogin
+    :app-id="facebookAppId"
+    :auto-load="true"  
+    @success="onFacebookLoginSuccess"
+>
+  <v-button type="submit">
+    <router-link to="/research"> Login with Facebook</router-link>
+  </v-button>
+</FacebookLogin>
+    <p v-if="error" class="error">{{ error }}</p>
+>>>>>>> Stashed changes
   </div>
 </template>
 
 <script>
+<<<<<<< Updated upstream
 import {useUserStore} from '../../stores/UserStore'
 
 export default {
@@ -53,3 +70,30 @@ div {
 
 }
 </style>
+=======
+import FacebookLogin from 'facebook-login-vuejs';
+
+import axios from 'axios';
+
+export default {
+  components: {
+    FacebookLogin,
+  },
+  data() {
+    return {
+      facebookAppId: '549326463701323',
+      error: '',
+    };
+  },
+  methods: {
+    onFacebookLoginSuccess(response) {
+      axios.post('/api/login', {
+      facebookId: response.userID,
+      accessToken: response.accessTokens
+      });
+  },
+},
+};
+
+</script>
+>>>>>>> Stashed changes
