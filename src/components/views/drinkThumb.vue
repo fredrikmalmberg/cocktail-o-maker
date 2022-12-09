@@ -4,7 +4,10 @@
 export default {
   props: {
     favourite: {required: true},
-    drinkClickedEvent: {required: true}
+    drinkClickedEvent: {required: true},
+    isFavourite: {required: false},
+    removeDrinkEvent: {required: false},
+
   },
 
   methods: {
@@ -20,6 +23,10 @@ export default {
         return "Loading..";
       }
 
+    },
+    removeFavouriteClickedACB(option){
+      //console.log("removing: ", option['value'].drinks[0].idDrink);
+      this.$props.removeDrinkEvent(parseInt(option['value'].drinks[0].idDrink));
     },
     drinkClickedACB(option) {
       //console.log(option['value'].drinks[0].idDrink);
@@ -39,7 +46,8 @@ export default {
           height="100"
           v-bind:src=imgUrl(favourite)
       ></v-img>
-      <v-card-title>{{ nameString(favourite) }}</v-card-title>
+      <v-card-title>{{ nameString(favourite) }}</v-card-title> 
+      
       <v-rating
           :value="4.5"
           color="amber"
@@ -48,8 +56,11 @@ export default {
           readonly
           size="14"
       ></v-rating>
+      
     </v-card>
+    
   </div>
+  <v-button v-if="isFavourite" @click="removeFavouriteClickedACB(favourite)"> Remove Favourite </v-button>
 </template>
 
 

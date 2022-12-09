@@ -21,7 +21,31 @@ export const useUserStore = defineStore("userStore", {
             this.underTwenty = false;
         },
         addFavourite(drinkID){
-            this.favourites = [drinkID, ...this.favourites];
+            if (!this.favourites.find(function(id){
+                return id !== drinkID;
+              })){
+              this.favourites = [drinkID, ...this.favourites];
+            }
+            else{console.log("Dink already in favourites")}
+        },
+        removeFavourite(drinkID){
+            this.favourites = [...this.favourites.filter(function(id){
+                return id !== drinkID;
+              })];
+        },
+        addIngredient(ingredientID){
+            if (!this.ingredients.find(function(id){
+                return id !== ingredientID;
+              })){
+                this.ingredients = [ingredientID, ...this.ingredients];
+              }
+            else{console.log("Ingredient already in list")}
+            
+        },
+        removeIngredient(ingredientID){
+            this.ingredients = [...this.ingredients.filter(function(id){
+                return id !== ingredientID;
+              })];
         }
     }
 })
