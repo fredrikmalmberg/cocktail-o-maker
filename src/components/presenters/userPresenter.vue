@@ -1,9 +1,8 @@
 <template>
   <userView :userName="userName"/>
-  {{ otherfavs }}
   <h2>Favourites</h2>
-  <div v-for="(f, index) in favourites" v-bind:key="index">
-    <drinkThumb :favourite="f" :drinkClickedEvent="drinkClickedACB" :isFavourite="true" :removeDrinkEvent="removeDrinkACB"/>
+  <div v-for="(f, index) in otherfavs" v-bind:key="index">
+    <drinkThumbPresenter :favourite="f" />
   </div>
   <h2>Recommended drinks based on your favourites</h2>
   <p>TBA</p>
@@ -16,17 +15,17 @@
     </li>
   </div>
   <p>TBA (Link to add ingredients..)</p>
-
 </template>
 
 <script>
+/* eslint-disable */
 import userView from '../views/userView.vue'
-import drinkThumb from '../views/drinkThumb.vue'
 import ingredientThumb from '../views/ingredientThumb.vue'
 import {useUserStore} from '../../stores/UserStore';
 import { computed } from "vue";
 //import { storeToRefs } from 'pinia'
 import {getDrinkDetails, getIngredientDetails} from '../../cocktailDBIntegration';
+import drinkThumbPresenter from './drinkThumbPresenter';
 
 function extractValues(input) {
   if (input.data) {
@@ -39,7 +38,7 @@ function extractValues(input) {
 export default {
   components: {
     userView,
-    drinkThumb,
+    drinkThumbPresenter,
     ingredientThumb,
   },
   methods: {
@@ -48,7 +47,10 @@ export default {
         name: 'drinkDetails',
         params: {id: id},
       })
-    }
+    },
+    fetchFavourites() {
+      this.otherfavs = this.userStore.favourites.map(getDrinkDetails).map(extractValues);
+      },
   },
   setup() {
     const userStore = useUserStore();
@@ -63,16 +65,19 @@ export default {
 
     return {
       userName: this.$route.params.name,
-      favourites: this.userStore.favourites.map(getDrinkDetails).map(extractValues),
       ingredients: this.userStore.ingredients.map(getIngredientDetails).map(extractValues),
     }
   },
-  computed: {
-    otherfavs() {
-      return this.favourites.map(getDrinkDetails); // This doesnt work as expected..
-    }
-  }
-
+  created() {
+    this.$watch(
+        //() => this.$route.params,
+        () => this.otherfavs,
+        () => {
+          this.fetchFavourites()
+        },
+        {immediate: true}
+    )
+  },
 }
 </script>
 

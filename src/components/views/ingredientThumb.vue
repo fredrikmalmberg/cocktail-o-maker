@@ -10,9 +10,7 @@ export default {
   methods: {
 
     nameString(option) {
-      console.log(option);
       if (option['value']) {
-        console.log(option['value']);
         return option['value'].ingredients[0].strIngredient;
       } else {
         return "Loading..";

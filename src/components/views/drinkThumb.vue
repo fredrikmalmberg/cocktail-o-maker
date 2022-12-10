@@ -3,20 +3,19 @@
 
 export default {
   props: {
-    favourite: {required: true},
+    name: {required: true},
+    imgUrl: {required: true},
     drinkClickedEvent: {required: true},
     isFavourite: {required: false},
     removeDrinkEvent: {required: false},
+    otherValue: {required: false},
 
   },
 
   methods: {
-    imgUrl(option) {
-      if (option['value']) {
-        return option['value'].drinks[0].strDrinkThumb;
-      }
-    },
-    nameString(option) {
+
+    nameString(option, other) {
+      console.log("getting value", other);
       if (option['value']) {
         return option['value'].drinks[0].strDrink;
       } else {
@@ -44,9 +43,9 @@ export default {
         elevation="2" @click="drinkClickedACB(favourite)">
       <v-img
           height="100"
-          v-bind:src=imgUrl(favourite)
+          v-bind:src=imgUrl
       ></v-img>
-      <v-card-title>{{ nameString(favourite) }}</v-card-title> 
+      <v-card-title>{{ name }}</v-card-title> 
       
       <v-rating
           :value="4.5"
