@@ -7,6 +7,7 @@ import { defineStore } from "pinia";
 // getters are functions that give us the info we want, in the way we want
 
 export const useUserStore = defineStore("userStore", {
+
   state: () => ({
     currentUser: null,
     login: false,
