@@ -14,14 +14,25 @@
       <router-link to="/user/hugo">User Home</router-link>
     </v-btn>
     <v-btn>Log in</v-btn>
+    <v-btn color="error" @click="logoutClicked()">Log out</v-btn>
   </v-app-bar>
 </template>
 
 <script>
-
+import { signOut, getAuth} from 'firebase/auth'
 export default {
   props: ['user'],
   data: () => ({}),
+  methods: {
+    logoutClicked(){
+      const auth = getAuth()
+      signOut(auth).then(() => {
+        console.log("user logged out")
+      }).catch((error) => {
+        console.log('error: ', error)
+      })
+    }
+  }
 }
 </script>
 
