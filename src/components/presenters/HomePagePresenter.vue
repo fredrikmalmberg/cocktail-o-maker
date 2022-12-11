@@ -11,7 +11,7 @@
 
     <div class="login-button">
       <v-btn><router-link to="/login">Log in</router-link></v-btn
-      ><v-btn style="margin-left: 5%"><router-link to="/login">Register</router-link></v-btn>
+      ><v-btn style="margin-left: 5%"><router-link to="/register">Register</router-link></v-btn>
     </div>
   </div>
 </template>
