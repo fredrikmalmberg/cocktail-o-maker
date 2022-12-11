@@ -3,6 +3,8 @@ import search from '../components/presenters/searchPresenter.vue'
 import HomeView from '../components/presenters/HomePagePresenter.vue'
 import detailsAPITest from '../components/presenters/detailsAPIPresenter.vue'
 import userComponent from '../components/presenters/userPresenter.vue'
+import registerComponent from '../components/presenters/registerComponent.vue'
+import loginComponent from '../components/presenters/loginComponent.vue'
 
 
 const routes = [
@@ -26,6 +28,16 @@ const routes = [
     path: '/research',
     name: 'main page',
     component: search
+  },
+  { 
+    path: '/register', 
+    name: 'register', 
+    component: registerComponent 
+  },
+  { 
+    path: '/login', 
+    name: 'login', 
+    component: loginComponent 
   },
   
 ]

@@ -10,6 +10,7 @@ import {defineStore} from "pinia";
 
 export const useUserStore = defineStore("userStore", {
     state: () => ({
+        currentUser:null,
        login:false,
        username:"hugo",
        underTwenty: true,
@@ -22,6 +23,12 @@ export const useUserStore = defineStore("userStore", {
         },
         addFavourite(drinkID){
             this.favourites = [drinkID, ...this.favourites];
+        },
+        setCurrentUser(user){
+            this.currentUser = user;
+            console.log(this.currentUser)
+            
         }
+
     }
 })

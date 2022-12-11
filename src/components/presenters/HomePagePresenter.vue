@@ -38,6 +38,14 @@
 
 
 <script>
+import {
+  getAuth,
+  //signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  //updateProfile,
+  //onAuthStateChanged,
+  //signOut,
+} from 'firebase/auth'
 import axios from 'axios';
 
 export default {
@@ -62,18 +70,20 @@ export default {
       }
     },
     async signup() {
-      try {
-        await axios.post('/api/signup', {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-        });
-        // Automatically log the user in with their new account
-        this.login();
-      } catch (error) {
-        this.error = 'Failed to sign up: ' + error.response.data.message;
-      }
-    },
+      const auth = getAuth()
+      await createUserWithEmailAndPassword(auth, this.email, this.password)
+    //   try {
+    //     await axios.post('/api/signup', {
+    //       name: this.name,
+    //       email: this.email,
+    //       password: this.password,
+    //     });
+    //     // Automatically log the user in with their new account
+    //     this.login();
+    //   } catch (error) {
+    //     this.error = 'Failed to sign up: ' + error.response.data.message;
+    //   }
+     },
   },
 };
 </script>
