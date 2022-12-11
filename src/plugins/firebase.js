@@ -13,9 +13,8 @@ const firebaseConfig = {
   projectId: "cocktail-o-maker",
   storageBucket: "cocktail-o-maker.appspot.com",
   messagingSenderId: "504803544788",
-  appId: "1:504803544788:web:737988c937a2ed966b7541"
+  appId: "1:504803544788:web:737988c937a2ed966b7541",
 };
-
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

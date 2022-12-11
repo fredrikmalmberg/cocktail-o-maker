@@ -53,22 +53,22 @@ export default {
   },
   methods: {
     loginClicked() {
-        const auth = getAuth()
-       signInWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
-       .then(response => {
-           this.userStore.setCurrentUser(response);
-            this.$router.push({ name: 'main page' })
+      const auth = getAuth()
+      signInWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
+          .then(response => {
+            this.userStore.setCurrentUser(response);
+            this.$router.push({name: 'main page'})
           }).catch(error => {
-            console.log(error)
-          })
-    //   this.register({email: this.emailModel, password: this.passwordModel, displayName: this.displayNameModel})
-    //       .then(() => {
-    //         this.$router.push({ name: 'Login' })
-    //       }).catch(error => {
-    //         console.log(error)
-    //       })
+        console.log(error)
+      })
+      //   this.register({email: this.emailModel, password: this.passwordModel, displayName: this.displayNameModel})
+      //       .then(() => {
+      //         this.$router.push({ name: 'Login' })
+      //       }).catch(error => {
+      //         console.log(error)
+      //       })
     },
-    
+
   }
 }
 </script>

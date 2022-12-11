@@ -61,21 +61,21 @@ export default {
   },
   methods: {
     registerClicked() {
-        const auth = getAuth()
-       createUserWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
-       .then(() => {
-            this.$router.push({ name: 'login' })
+      const auth = getAuth()
+      createUserWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
+          .then(() => {
+            this.$router.push({name: 'login'})
           }).catch(error => {
-            console.log(error)
-          })
-    //   this.register({email: this.emailModel, password: this.passwordModel, displayName: this.displayNameModel})
-    //       .then(() => {
-    //         this.$router.push({ name: 'Login' })
-    //       }).catch(error => {
-    //         console.log(error)
-    //       })
+        console.log(error)
+      })
+      //   this.register({email: this.emailModel, password: this.passwordModel, displayName: this.displayNameModel})
+      //       .then(() => {
+      //         this.$router.push({ name: 'Login' })
+      //       }).catch(error => {
+      //         console.log(error)
+      //       })
     },
-    
+
   }
 }
 </script>
