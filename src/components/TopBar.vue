@@ -13,7 +13,7 @@
     <v-btn>
       <router-link to="/user/hugo">User Home</router-link>
     </v-btn>
-    <v-btn>Log in</v-btn>
+    <v-btn><router-link to="/login">Log in</router-link></v-btn>
     <v-btn color="error" @click="logoutClicked()">Log out</v-btn>
   </v-app-bar>
 </template>
