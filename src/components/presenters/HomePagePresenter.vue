@@ -5,31 +5,30 @@
     <form @submit.prevent="login">
       <label>
         Email:
-        <input type="email" v-model="email" />
+        <input type="email" v-model="email"/>
       </label>
       <label>
         Password:
-        <input type="password" v-model="password" />
+        <input type="password" v-model="password"/>
       </label>
       <v-button type="submit">Login</v-button>
       <p v-if="error" class="error">{{ error }}</p>
     </form>
 
- 
 
     <h1>Sign up</h1>
     <v-form @submit.prevent="signup">
-      <label>
+<!--      <label>
         Name:
-        <input type="text" v-model="name" />
-      </label>
+        <input type="text" v-model="name"/>
+      </label>-->
       <label>
         Email:
-        <input type="email" v-model="email" />
+        <input type="email" v-model="email"/>
       </label>
       <label>
         Password:
-        <input type="password" v-model="password" />
+        <input type="password" v-model="password"/>
       </label>
       <v-button type="submit">Sign up</v-button>
       <p v-if="error" class="error">{{ error }}</p>
@@ -74,7 +73,7 @@ export default {
       } catch (error) {
         this.error = 'Failed to sign up: ' + error.response.data.message;
       }
-  },
+    },
   },
 };
 </script>
