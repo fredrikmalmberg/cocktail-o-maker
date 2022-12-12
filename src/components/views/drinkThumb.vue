@@ -5,31 +5,22 @@ export default {
   props: {
     name: {required: true},
     imgUrl: {required: true},
+    drinkID: {required: true},
     drinkClickedEvent: {required: true},
     isFavourite: {required: false},
-    removeDrinkEvent: {required: false},
+    removeDrinkEvent: {required: true},
     otherValue: {required: false},
 
   },
 
   methods: {
-
-    nameString(option, other) {
-      console.log("getting value", other);
-      if (option['value']) {
-        return option['value'].drinks[0].strDrink;
-      } else {
-        return "Loading..";
-      }
-
+    removeFavouriteClickedACB(drinkID){
+      console.log("removing: ", drinkID);
+      this.$props.removeDrinkEvent(drinkID);
     },
-    removeFavouriteClickedACB(option){
-      //console.log("removing: ", option['value'].drinks[0].idDrink);
-      this.$props.removeDrinkEvent(parseInt(option['value'].drinks[0].idDrink));
-    },
-    drinkClickedACB(option) {
+    drinkClickedACB(drinkID) {
       //console.log(option['value'].drinks[0].idDrink);
-      this.$props.drinkClickedEvent(option['value'].drinks[0].idDrink);
+      this.$props.drinkClickedEvent(drinkID);
     }
   }
 }
@@ -39,8 +30,9 @@ export default {
 
 <template>
   <div class="searchResult">
+      <div>
     <v-card
-        elevation="2" @click="drinkClickedACB(favourite)">
+        elevation="2" @click="drinkClickedACB(drinkID)">
       <v-img
           height="100"
           v-bind:src=imgUrl
@@ -59,7 +51,8 @@ export default {
     </v-card>
     
   </div>
-  <v-button v-if="isFavourite" @click="removeFavouriteClickedACB(favourite)"> Remove Favourite </v-button>
+</div>
+  <v-button v-if="isFavourite" @click="removeFavouriteClickedACB(drinkID)"> Remove Favourite </v-button>
 </template>
 
 

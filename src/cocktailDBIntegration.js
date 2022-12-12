@@ -50,5 +50,25 @@ function getAlcoolicFilterList(){
    return { isFetching, error, data };
 }
 
-export {getDrinkDetails, getIngredientDetails, searchDrinkByName, searchDrinkFirstLetter, getIngredientList, getCategorieList, getGlassesList, getAlcoolicFilterList};
+// Test with regular fetch
+const options = {
+   method: 'GET',
+   headers: {
+      'X-RapidAPI-Host': BASE_URL
+   }
+};
+
+function treatHTTPResponseACB(response){ 
+   if(!response.ok) throw new Error("API problem "+response.status);  // or response.status!==200 
+   console.log(response);
+   return response.json();
+}
+
+ function getDrinkDetails2(id){
+   const complete_url = BASE_URL + "lookup.php?i=" + id 
+   return fetch(complete_url).then(treatHTTPResponseACB)
+}
+
+
+export {getDrinkDetails, getDrinkDetails2, getIngredientDetails, searchDrinkByName, searchDrinkFirstLetter, getIngredientList, getCategorieList, getGlassesList, getAlcoolicFilterList};
 /* eslint-disable */

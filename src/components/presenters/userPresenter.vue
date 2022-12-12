@@ -1,6 +1,7 @@
 <template>
   <userView :userName="userName"/>
   <h2>Favourites</h2>
+  {{otherfavs}}
   <div v-for="(f, index) in otherfavs" v-bind:key="index">
     <drinkThumbPresenter :favourite="f" />
   </div>
@@ -24,8 +25,9 @@ import ingredientThumb from '../views/ingredientThumb.vue'
 import {useUserStore} from '../../stores/UserStore';
 import { computed } from "vue";
 //import { storeToRefs } from 'pinia'
-import {getDrinkDetails, getIngredientDetails} from '../../cocktailDBIntegration';
+import {getDrinkDetails2, getIngredientDetails} from '../../cocktailDBIntegration';
 import drinkThumbPresenter from './drinkThumbPresenter';
+import {resolvePromise} from '../../resolvePromise'
 
 function extractValues(input) {
   if (input.data) {
@@ -48,8 +50,14 @@ export default {
         params: {id: id},
       })
     },
+    resolvePromises(arr) {
+      arr.map(resolvePromise(el, this.resultPromiseState));
+    },
     fetchFavourites() {
-      this.otherfavs = this.userStore.favourites.map(getDrinkDetails).map(extractValues);
+      //this.otherfavs = this.userStore.favourites.map(getDrinkDetails).map(extractValues);
+      this.otherfavs = this.userStore.favourites;
+      //resolvePromise(this.userStore.favourites.map(getDrinkDetails2), resultPromiseState);
+      //this.resolvePromises(this.otherfavs);
       },
   },
   setup() {
@@ -64,6 +72,7 @@ export default {
   data() {
 
     return {
+      resultPromiseState: {},
       userName: this.$route.params.name,
       ingredients: this.userStore.ingredients.map(getIngredientDetails).map(extractValues),
     }
