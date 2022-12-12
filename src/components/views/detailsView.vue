@@ -13,6 +13,7 @@
               <v-img
                   height="250"
                   v-bind:src="element.strDrinkThumb"
+                  style="text-align:center;"
               ></v-img>
               <v-card-title>{{ element.strDrink }}</v-card-title>
               <v-rating
@@ -42,14 +43,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-.detailsDrink {
-  text-align: center;
-  display: inline-block;
-  width: 200px;
-  vertical-align: text-top;
-  margin-inline: 40px;
-  overflow: auto;
-}
-</style>
