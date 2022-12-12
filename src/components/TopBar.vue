@@ -14,15 +14,20 @@
       <router-link to="/user/hugo">User Home</router-link>
     </v-btn>
     <v-btn><router-link to="/login">Log in</router-link></v-btn>
-    <v-btn color="error" @click="logoutClicked()">Log out</v-btn>
+    <v-btn color="error" @click="logoutClicked()" :disabled="!isLoggedIn()">Log out</v-btn>
   </v-app-bar>
 </template>
 
 <script>
 import { signOut, getAuth} from 'firebase/auth'
+import {useUserStore} from "@/stores/UserStore";
 export default {
   props: ['user'],
-  data: () => ({}),
+  data() {
+    return {
+      userStore: useUserStore()
+    }
+  },
   methods: {
     logoutClicked(){
       const auth = getAuth()
@@ -31,6 +36,12 @@ export default {
       }).catch((error) => {
         console.log('error: ', error)
       })
+    },
+    isLoggedIn(){
+      if (this.userStore.currentUser){
+        return true
+      }
+
     }
   }
 }

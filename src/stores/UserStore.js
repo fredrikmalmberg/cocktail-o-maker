@@ -7,9 +7,9 @@ import { defineStore } from "pinia";
 // getters are functions that give us the info we want, in the way we want
 
 export const useUserStore = defineStore("userStore", {
-
   state: () => ({
     currentUser: null,
+    currentUserID: null,
     login: false,
     username: "hugo",
     underTwenty: true,
@@ -26,6 +26,13 @@ export const useUserStore = defineStore("userStore", {
     setCurrentUser(user) {
       this.currentUser = user;
       console.log(this.currentUser);
+    },
+  },
+  getters: {
+    getCurrentUserID() {
+      if (this.currentUser) {
+        return this.currentUser.uid;
+      }
     },
   },
 });

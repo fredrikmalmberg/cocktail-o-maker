@@ -61,12 +61,6 @@ export default {
           }).catch(error => {
         console.log(error)
       })
-      //   this.register({email: this.emailModel, password: this.passwordModel, displayName: this.displayNameModel})
-      //       .then(() => {
-      //         this.$router.push({ name: 'Login' })
-      //       }).catch(error => {
-      //         console.log(error)
-      //       })
     },
 
   }
