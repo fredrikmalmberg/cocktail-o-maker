@@ -1,5 +1,5 @@
 <template>
-  <v-container fill-height>
+  <v-container fill-height @keydown.enter.prevent="loginClicked()">
     <v-row no-gutters>
       <v-col cols="12" class="title mb-5 text-center">
         Login
