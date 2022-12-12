@@ -5,6 +5,7 @@ import detailsAPITest from '../components/presenters/detailsAPIPresenter.vue'
 import userComponent from '../components/presenters/userPresenter.vue'
 import registerComponent from '../components/presenters/registerComponent.vue'
 import loginComponent from '../components/presenters/loginComponent.vue'
+import logoutPresenter from '../components/presenters/logoutPresenter'
 
 
 const routes = [
@@ -38,6 +39,11 @@ const routes = [
     path: '/login', 
     name: 'login', 
     component: loginComponent 
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: logoutPresenter
   },
   
 ]

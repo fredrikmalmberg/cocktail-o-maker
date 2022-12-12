@@ -70,7 +70,7 @@ export default {
 <style>
 .home-page {
   font-family: sans-serif;
-  background-color: #fafafa;
+  background-color: hsl(0, 0%, 100%);
   margin: 0;
   padding: 0;
   color: #333;
