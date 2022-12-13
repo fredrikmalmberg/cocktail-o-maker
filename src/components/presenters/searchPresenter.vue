@@ -1,11 +1,11 @@
 <template>
-  <v-main>
-    <searchFormView @doSearch="fetchSearch" @updateQuery="newQuery"/>
-    <div class="gridSearch">
-      <searchSidebarView :drinks="drinkStore"/>
-      <searchResultsView :searchResult="resultPromiseState" @drinkClickedEvent="drinkClickedACB"/>
-    </div>
-  </v-main>
+    <v-main>
+        <searchFormView @doSearch="fetchSearch" @updateQuery="newQuery"/>
+        <div class="gridSearch">
+          <searchSidebarView :drinks="drinkStore" @updatefilter="updateFilter"/>
+          <searchResultsView :searchResult="resultPromiseState" @drinkClickedEvent="drinkClickedACB"/>
+        </div>
+    </v-main>
 </template>
 
 <script>
@@ -17,39 +17,60 @@ import searchSidebarView from '../views/searchSidebarView.vue'
 import {searchDrinkByName, searchDrinkFirstLetter} from '../../cocktailDBIntegration.js';
 import {resolvePromise} from '../../resolvePromise'
 
-export default {
-  components: {
-    searchResultsView,
-    searchFormView,
-    searchSidebarView
-  },
-  mounted() {
-    resolvePromise(searchDrinkByName(this.query), this.resultPromiseState);
-  },
-  data: () => ({
-    resultPromiseState: {},
-    query: "",
-    filters: {}
-  }),
-  setup() {
-    const userStore = useUserStore();
-    const drinkStore = useDrinkStore();
-    drinkStore.getIngredients();
-    drinkStore.getGlassesList();
-    drinkStore.getAlcoolFilterList();
-    drinkStore.getCategoriesList();
-    return {userStore, drinkStore};
-  },
-  methods: {
-    fetchSearch() {
+  export default {
+    components:{
+        searchResultsView,
+        searchFormView,
+        searchSidebarView,
+    },
+    mounted(){
       resolvePromise(searchDrinkByName(this.query), this.resultPromiseState);
     },
-    fetchSearchByLetter() {
-      resolvePromise(searchDrinkFirstLetter(this.query), this.resultPromiseState);
+    data: () => ({  
+        resultPromiseState:{},
+        ingredientFilterPromiseState:{},
+        categoryFilterPromiseState:{},
+        glasseFilterPromiseState:{},
+        alcoolFilterPromiseState:{},
+        query:"",
+        filters: {
+          glasses: "",
+          ingredients: [],
+          alcoolFilter: "",
+          categories: ""
+        }
+    }),
+    setup () {
+      const userStore = useUserStore();
+      const drinkStore = useDrinkStore();
+      drinkStore.getIngredients();
+      drinkStore.getGlassesList();
+      drinkStore.getAlcoolFilterList();
+      drinkStore.getCategoriesList();
+      return { userStore, drinkStore };
     },
-    newQuery(value) {
-      console.log(value);
-      this.query = value;
+    methods:{
+      fetchSearch() {
+        resolvePromise(searchDrinkByName(this.query), this.resultPromiseState);
+      },
+      fetchSearchByLetter() {
+        resolvePromise(searchDrinkFirstLetter(this.query), this.resultPromiseState);
+      },
+      newQuery(value){
+        console.log(value);
+        this.query = value;
+      },
+      updateFilter(type, value){
+        this.filters[type] = value;
+
+      },
+      drinkClickedACB(option){
+        console.log("clicked drink", option);
+        this.$router.push({
+          name: 'drinkDetails',
+          params: { id: option },
+        })
+      }
     },
     drinkClickedACB(option) {
       console.log("clicked drink", option);
