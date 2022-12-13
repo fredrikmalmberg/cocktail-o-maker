@@ -12,4 +12,4 @@ function resolvePromise(promise, promiseState) {
   promiseState.loading = isFetching;
 }
 
-export { resolvePromise };
+export { resolvePromise, };

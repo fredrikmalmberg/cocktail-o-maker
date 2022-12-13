@@ -3,36 +3,10 @@
 
 export default {
   props: {
-    favourite: {required: true},
-    drinkClickedEvent: {required: true},
+    name: {required: true},
+    imgUrl: {required: true},
     isFavourite: {required: false},
-    removeDrinkEvent: {required: false},
-
   },
-
-  methods: {
-    imgUrl(option) {
-      if (option['value']) {
-        return option['value'].drinks[0].strDrinkThumb;
-      }
-    },
-    nameString(option) {
-      if (option['value']) {
-        return option['value'].drinks[0].strDrink;
-      } else {
-        return "Loading..";
-      }
-
-    },
-    removeFavouriteClickedACB(option){
-      //console.log("removing: ", option['value'].drinks[0].idDrink);
-      this.$props.removeDrinkEvent(parseInt(option['value'].drinks[0].idDrink));
-    },
-    drinkClickedACB(option) {
-      //console.log(option['value'].drinks[0].idDrink);
-      this.$props.drinkClickedEvent(option['value'].drinks[0].idDrink);
-    }
-  }
 }
 
 </script>
@@ -41,26 +15,24 @@ export default {
 <template>
   <div class="searchResult">
     <v-card
-        elevation="2" @click="drinkClickedACB(favourite)">
+        elevation="2" @click="$emit('drinkClicked')">
       <v-img
           height="100"
-          v-bind:src=imgUrl(favourite)
+          v-bind:src=imgUrl
       ></v-img>
-      <v-card-title>{{ nameString(favourite) }}</v-card-title> 
-      
-      <v-rating
-          :value="4.5"
-          color="amber"
-          dense
-          half-increments
-          readonly
-          size="14"
-      ></v-rating>
-      
+      <v-card-title>{{ name }}</v-card-title> 
+      <v-card-actions>
+        <v-btn v-if="isFavourite"
+          color="deep-purple lighten-2"
+          text
+          @click.stop="$emit('removeFavourite')"
+        >
+          Remove Favourite
+        </v-btn>
+      </v-card-actions>
     </v-card>
-    
-  </div>
-  <v-button v-if="isFavourite" @click="removeFavouriteClickedACB(favourite)"> Remove Favourite </v-button>
+</div>
+  
 </template>
 
 
