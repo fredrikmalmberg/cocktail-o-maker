@@ -29,9 +29,14 @@ export const useUserStore = defineStore("userStore", {
             else{console.log("Dink already in favourites")}
         },
         removeFavourite(drinkID){
+          drinkID = parseInt(drinkID);
+          console.log(drinkID);
             this.favourites = [...this.favourites.filter(function(id){
                 return id !== drinkID;
               })];
+        },
+        isFavourite(drinkID){
+          return (this.favourites.indexOf(drinkID) !== -1)
         },
         addIngredient(ingredientID){
             if (!this.ingredients.find(function(id){
