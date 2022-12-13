@@ -5,24 +5,8 @@ export default {
   props: {
     name: {required: true},
     imgUrl: {required: true},
-    drinkID: {required: true},
-    drinkClickedEvent: {required: true},
     isFavourite: {required: false},
-    removeDrinkEvent: {required: true},
-    otherValue: {required: false},
-
   },
-
-  methods: {
-    removeFavouriteClickedACB(drinkID){
-      console.log("removing: ", drinkID);
-      this.$props.removeDrinkEvent(drinkID);
-    },
-    drinkClickedACB(drinkID) {
-      //console.log(option['value'].drinks[0].idDrink);
-      this.$props.drinkClickedEvent(drinkID);
-    }
-  }
 }
 
 </script>
@@ -30,29 +14,25 @@ export default {
 
 <template>
   <div class="searchResult">
-      <div>
     <v-card
-        elevation="2" @click="drinkClickedACB(drinkID)">
+        elevation="2" @click="$emit('drinkClicked')">
       <v-img
           height="100"
           v-bind:src=imgUrl
       ></v-img>
       <v-card-title>{{ name }}</v-card-title> 
-      
-      <v-rating
-          :value="4.5"
-          color="amber"
-          dense
-          half-increments
-          readonly
-          size="14"
-      ></v-rating>
-      
+      <v-card-actions>
+        <v-btn v-if="isFavourite"
+          color="deep-purple lighten-2"
+          text
+          @click.stop="$emit('removeFavourite')"
+        >
+          Remove Favourite
+        </v-btn>
+      </v-card-actions>
     </v-card>
-    
-  </div>
 </div>
-  <v-button v-if="isFavourite" @click="removeFavouriteClickedACB(drinkID)"> Remove Favourite </v-button>
+  
 </template>
 
 

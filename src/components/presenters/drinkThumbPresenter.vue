@@ -1,17 +1,21 @@
 <template>
-    <div v-if="resultPromiseState.data">
-    <drinkThumb :drinkID="resultPromiseState.data.drinks[0].idDrink" :imgUrl="resultPromiseState.data.drinks[0].strDrinkThumb" :name="resultPromiseState.data.drinks[0].strDrink" :drinkClickedEvent="drinkClickedACB" :isFavourite="true" :removeDrinkEvent="removeDrinkACB"/>
-    {{favourite}}
+    <div v-if="!resultPromiseState.data">
+      Loading...
     </div>
+    <drinkThumb 
+    v-else 
+    :imgUrl="imgUrl()" 
+    :name="nameStr()" 
+    @drinkClicked="drinkClickedACB" 
+    :isFavourite="isFavourite(favourite)" 
+    @removeFavourite="removeDrinkACB"/>
 </template>
 
 <script>
-/* eslint-disable */
 import drinkThumb from '../views/drinkThumb.vue'
 import {useUserStore} from '../../stores/UserStore';
-import { computed } from "vue";
-import {resolvePromise2} from '../../resolvePromise'
-import {getDrinkDetails2} from '../../cocktailDBIntegration';
+import {getDrinkDetails} from '../../cocktailDBIntegration';
+import { mapActions} from "pinia";
 
 export default {
   components: {
@@ -21,43 +25,39 @@ export default {
     favourite: {required: true}
   },
   mounted() {
-    console.log("fav is", this.favourite);
-    resolvePromise2(getDrinkDetails2(this.favourite), this.resultPromiseState);
+    this.resultPromiseState = getDrinkDetails(this.favourite);
   },
-  data: () => ({
-    resultPromiseState : {},
-  }),
-  setup(props) {
-    const userStore = useUserStore();
+  data() {
+    return { 
+      name : "",
 
-    //const fav = props.favourite;
-    //const nameString = {};
-    
-
-    //resolvePromise(fav, this.resultPromiseState);
-    //const { favourites } = storeToRefs(userStore).map(getDrinkDetails).map(extractValues);
-    //const { removeFavourite } = useStore;
-    //extractValues(this.favourite);
-    
-    return {
-        //nameString,
-        //imgUrl,
-        userStore, 
-        removeDrinkACB: computed(() => userStore.removeFavourite)
-      };
+      resultPromiseState: { data: null, error: null} };
   },
   methods: {
-    drinkClickedACB(id) {
+    ...mapActions(useUserStore, ["removeFavourite"]),
+    ...mapActions(useUserStore, ["isFavourite"]),
+
+    drinkClickedACB() {
       this.$router.push({
         name: 'drinkDetails',
-        params: {id: id},
+        params: {id: this.favourite},
       })
     },
-    //removeDrinkACB(id){
-      //this.userStore.removeFavourite(id);
-    //}
+    removeDrinkACB(){
+      let name = this.nameStr();
+      console.log("should remove", name)
+      if (confirm('Are you sure you want to remove ' + name + " from your favourites?")){
+        this.removeFavourite(this.favourite)
+      }
+      
+    },
+    imgUrl(){
+      return this.resultPromiseState.data.drinks[0].strDrinkThumb
+    },
+    nameStr(){
+      return this.resultPromiseState.data.drinks[0].strDrink
+    },
   },
-
 }
 </script>
 

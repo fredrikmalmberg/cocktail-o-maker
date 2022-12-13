@@ -32,6 +32,12 @@ function getIngredientList(){
    return { isFetching, error, data };
 }
 
+function searchIngredientByName(text){
+   const complete_url = BASE_URL + "search.php?i=" + text;
+   const { isFetching, error, data } = useFetch(complete_url).get().json();
+   return { isFetching, error, data };
+}
+
 function getCategorieList(){
    const complete_url = BASE_URL + "list.php?c=list"
    const { isFetching, error, data } = useFetch(complete_url).get().json();
@@ -50,25 +56,5 @@ function getAlcoolicFilterList(){
    return { isFetching, error, data };
 }
 
-// Test with regular fetch
-const options = {
-   method: 'GET',
-   headers: {
-      'X-RapidAPI-Host': BASE_URL
-   }
-};
-
-function treatHTTPResponseACB(response){ 
-   if(!response.ok) throw new Error("API problem "+response.status);  // or response.status!==200 
-   console.log(response);
-   return response.json();
-}
-
- function getDrinkDetails2(id){
-   const complete_url = BASE_URL + "lookup.php?i=" + id 
-   return fetch(complete_url).then(treatHTTPResponseACB)
-}
-
-
-export {getDrinkDetails, getDrinkDetails2, getIngredientDetails, searchDrinkByName, searchDrinkFirstLetter, getIngredientList, getCategorieList, getGlassesList, getAlcoolicFilterList};
+export {getDrinkDetails, getIngredientDetails, searchDrinkByName, searchIngredientByName, searchDrinkFirstLetter, getIngredientList, getCategorieList, getGlassesList, getAlcoolicFilterList};
 /* eslint-disable */
