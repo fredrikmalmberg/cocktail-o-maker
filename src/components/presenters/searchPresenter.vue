@@ -17,7 +17,7 @@ import searchSidebarView from '../views/searchSidebarView.vue'
 import {searchDrinkByName, searchDrinkFirstLetter} from '../../cocktailDBIntegration.js';
 import {resolvePromise} from '../../resolvePromise'
 
-  export default {
+export default {
     components:{
         searchResultsView,
         searchFormView,
@@ -79,9 +79,7 @@ import {resolvePromise} from '../../resolvePromise'
         params: {id: option},
       })
     }
-  },
-
-}
+  }
 </script>
 
 <style scoped>
