@@ -9,7 +9,6 @@ import { defineStore } from "pinia";
 export const useUserStore = defineStore("userStore", {
   state: () => ({
     currentUser: null,
-    currentUserID: null,
     login: false,
     username: "hugo",
     underTwenty: true,
@@ -24,44 +23,53 @@ export const useUserStore = defineStore("userStore", {
       this.currentUser = user;
       console.log(this.currentUser);
     },
-    addFavourite(drinkID){
-            if (!this.favourites.find(function(id){
-                return id !== drinkID;
-              })){
-              this.favourites = [drinkID, ...this.favourites];
-            }
-            else{console.log("Dink already in favourites")}
-    },
-    removeFavourite(drinkID){
-      drinkID = parseInt(drinkID);
-      console.log(drinkID);
-        this.favourites = [...this.favourites.filter(function(id){
-            return id !== drinkID;
-          })];
-    },
-    isFavourite(drinkID){
-      return (this.favourites.indexOf(drinkID) !== -1)
-    },
-    addIngredient(ingredientID){
-        if (!this.ingredients.find(function(id){
-            return id !== ingredientID;
-          })){
-            this.ingredients = [ingredientID, ...this.ingredients];
-          }
-        else{console.log("Ingredient already in list")}
-        
-    },
-    removeIngredient(ingredientID){
-        this.ingredients = [...this.ingredients.filter(function(id){
-            return id !== ingredientID;
-          })];
-    }
-  },
-  getters: {
-    getCurrentUserID() {
-      if (this.currentUser) {
-        return this.currentUser.uid;
+    addFavourite(drinkID) {
+      if (
+        !this.favourites.find(function (id) {
+          return id !== drinkID;
+        })
+      ) {
+        this.favourites = [drinkID, ...this.favourites];
+      } else {
+        console.log("Dink already in favourites");
       }
     },
+    removeFavourite(drinkID) {
+      drinkID = parseInt(drinkID);
+      console.log(drinkID);
+      this.favourites = [
+        ...this.favourites.filter(function (id) {
+          return id !== drinkID;
+        }),
+      ];
+    },
+    isFavourite(drinkID) {
+      return this.favourites.indexOf(drinkID) !== -1;
+    },
+    addIngredient(ingredientID) {
+      if (
+        !this.ingredients.find(function (id) {
+          return id !== ingredientID;
+        })
+      ) {
+        this.ingredients = [ingredientID, ...this.ingredients];
+      } else {
+        console.log("Ingredient already in list");
+      }
+    },
+    removeIngredient(ingredientID) {
+      this.ingredients = [
+        ...this.ingredients.filter(function (id) {
+          return id !== ingredientID;
+        }),
+      ];
+    },
   },
+  //getters: {
+  //getCurrentUserID() {
+  // if (this.currentUser) {
+  //  return this.currentUser.uid;
+  //}
+  //},
+  //},
 });
