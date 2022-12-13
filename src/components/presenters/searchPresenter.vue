@@ -9,13 +9,13 @@
 </template>
 
 <script>
-  import {useUserStore} from '../../stores/UserStore'
-  import {useDrinkStore} from '../../stores/DrinkStore'
-  import searchResultsView from '../views/searchResultView.vue'
-  import searchFormView from '../views/searchFormView.vue'
-  import searchSidebarView from '../views/searchSidebarView.vue'
-  import {searchDrinkByName, searchDrinkFirstLetter} from '../../cocktailDBIntegration.js';
-  import {resolvePromise} from '../../resolvePromise'
+import {useUserStore} from '../../stores/UserStore'
+import {useDrinkStore} from '../../stores/DrinkStore'
+import searchResultsView from '../views/searchResultView.vue'
+import searchFormView from '../views/searchFormView.vue'
+import searchSidebarView from '../views/searchSidebarView.vue'
+import {searchDrinkByName, searchDrinkFirstLetter} from '../../cocktailDBIntegration.js';
+import {resolvePromise} from '../../resolvePromise'
 
   export default {
     components:{
@@ -72,15 +72,23 @@
         })
       }
     },
+    drinkClickedACB(option) {
+      console.log("clicked drink", option);
+      this.$router.push({
+        name: 'drinkDetails',
+        params: {id: option},
+      })
+    }
+  },
 
-  }
+}
 </script>
 
 <style scoped>
-.gridSearch{
-        display:flex;
-        flex-direction:row; 
-        height: 100%;
-        min-height: auto;
+.gridSearch {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  min-height: auto;
 }
 </style>

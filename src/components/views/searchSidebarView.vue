@@ -36,8 +36,8 @@
                 ></v-select>
             </div>
 
-        </div>
-    </v-main>
+    </div>
+  </v-main>
 </template>
 
 <script>
@@ -76,10 +76,10 @@ export default{
 }
 </script>
 <style scoped>
-.sidebar{
-        margin: 2px;
-        width: 250px;
-        overflow:auto;
+.sidebar {
+  margin: 2px;
+  width: 250px;
+  overflow: auto;
 }
 
 </style>
