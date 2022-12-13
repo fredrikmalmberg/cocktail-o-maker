@@ -28,12 +28,16 @@
     },
     data: () => ({  
         resultPromiseState:{},
+        ingredientFilterPromiseState:{},
+        categoryFilterPromiseState:{},
+        glasseFilterPromiseState:{},
+        alcoolFilterPromiseState:{},
         query:"",
         filters: {
-          glasses: [],
+          glasses: "",
           ingredients: [],
           alcoolFilter: "",
-          categories: []
+          categories: ""
         }
     }),
     setup () {
@@ -58,6 +62,7 @@
       },
       updateFilter(type, value){
         this.filters[type] = value;
+
       },
       drinkClickedACB(option){
         console.log("clicked drink", option);

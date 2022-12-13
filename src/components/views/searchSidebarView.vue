@@ -1,14 +1,12 @@
 <template>
     <v-main>
         <div class="sidebar">
-            <div v-if="drinks.glassesPromiseState.post">
+            <div v-if="drinks.categoriesPromiseState.post">
                 <v-select
-                v-model="glassesSelected"
-                :items="drinks.arrayGlasses"
+                v-model="categoriesSelected"
+                :items="drinks.arrayCategories"
                 attach
-                chips
-                label="Glasses"
-                multiple
+                label="Categories"
                 ></v-select>
             </div>
             <div v-if="drinks.ingredientsPromiseState.post">
@@ -21,14 +19,12 @@
                 multiple
                 ></v-select>
             </div>
-            <div v-if="drinks.categoriesPromiseState.post">
+            <div v-if="drinks.glassesPromiseState.post">
                 <v-select
-                v-model="categoriesSelected"
-                :items="drinks.arrayCategories"
+                v-model="glassesSelected"
+                :items="drinks.arrayGlasses"
                 attach
-                chips
-                label="Categories"
-                multiple
+                label="Glasses"
                 ></v-select>
             </div>
             <div v-if="drinks.alcoolFiltersPromiseState.post">
@@ -36,7 +32,6 @@
                 v-model="filterAlcoolSelected"
                 :items="drinks.arrayAlcoolFilter"
                 attach
-                chips
                 label="Alcool Filters"
                 ></v-select>
             </div>
@@ -52,10 +47,10 @@ export default{
     setup() {
     },
       data: () => ({
-        glassesSelected: [],
+        glassesSelected: "",
         ingredientsSelected: [],
         filterAlcoolSelected: "",
-        categoriesSelected: []
+        categoriesSelected: ""
   }),
     watch: {
     // whenever question changes, this function will run
