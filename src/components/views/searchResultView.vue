@@ -12,8 +12,10 @@
                 elevation="2">
               <v-img
                   @click="detail(element.idDrink)"
-                  height="250"
+                  height="200"
+                  width="200"
                   v-bind:src="element.strDrinkThumb"
+                  style="border-radius: 10%; border: 5px solid #f5f5f5;"
               ></v-img>
               <v-card-title>{{ element.strDrink }}</v-card-title>
               <v-rating
@@ -56,5 +58,6 @@ export default {
   vertical-align: text-top;
   margin-inline: 40px;
   overflow: auto;
+  
 }
 </style>
