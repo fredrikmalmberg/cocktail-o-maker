@@ -3,7 +3,7 @@
         <searchFormView @doSearch="fetchSearch" @updateQuery="newQuery"/>
         <div class="gridSearch">
           <searchSidebarView :drinks="drinkStore" @updatefilter="updateFilter"/>
-          <searchResultsView :searchResult="resultPromiseState" @drinkClickedEvent="drinkClickedACB"/>
+          <searchResultsView :searchResult="resultPromiseState" @drinkClickedEvent="drinkClickedACB" :ingredientList="ingredientList"/>
         </div>
     </v-main>
 </template>
@@ -40,6 +40,11 @@ export default {
           categories: ""
         }
     }),
+    computed: {
+      ingredientList() {
+        return this.userStore.ingredients;
+      },
+    },
     setup () {
       const userStore = useUserStore();
       const drinkStore = useDrinkStore();

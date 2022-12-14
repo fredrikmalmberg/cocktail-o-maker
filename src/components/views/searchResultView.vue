@@ -8,7 +8,7 @@
       <div v-if="searchResult.post">
         <div>
           <div class="searchResult" v-for="element in searchResult.post.drinks" :key="element.idDrink">
-            <drinkThumbPresenter :favourite="element['idDrink']"/>
+            <drinkThumbPresenter :favourite="element['idDrink']" :ingredientList="this.ingredientList"/>
           </div>
         </div>
       </div>
@@ -19,9 +19,11 @@
 <script>
 import drinkThumbPresenter from '../presenters/drinkThumbPresenter.vue';
 export default {
-  setup() {
-  },
-  props: ['searchResult'],
+  props: {searchResult: {required: true},
+          ingredientList: {required: false, default : []},
+},
+  
+  
   data: () => ({}),
   methods: {
     detail(idDrink) {
