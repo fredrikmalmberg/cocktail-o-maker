@@ -1,12 +1,21 @@
 <template>
-  <v-card elevation="2">
-    {{ name }}
-    <span v-if="hasIngredient">✓</span>
-    <button 
+   
+  
+    <v-btn 
     v-if="hasIngredient" 
+    rounded="pill"
+    class="mx-2"
+    x-large
     @click="$emit('removeIngredient')"
-    >Remove Ingredient</button>
-  </v-card>
+    >✓ {{ name }}</v-btn>
+    <v-btn 
+    v-else
+    rounded="pill"
+    class="mx-2"
+    x-large
+    @click="$emit('addIngredient')"
+    >{{ name }}</v-btn>
+  
 
 </template>
 

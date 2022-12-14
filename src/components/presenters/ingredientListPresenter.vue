@@ -1,8 +1,8 @@
 <template>
 <div v-if="resultPromiseState.data" >
-  <div class="searchResult" v-for="(i, item) in resultPromiseState.data.drinks" v-bind:key="item">
+  <span v-for="(i, item) in resultPromiseState.data.drinks" v-bind:key="item">
     <ingredientSearchPresenter :ingredientName="i.strIngredient1"/>
-  </div>
+  </span>
 
 </div>
 </template>

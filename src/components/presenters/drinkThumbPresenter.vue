@@ -8,7 +8,8 @@
     :name="nameStr()" 
     @drinkClicked="drinkClickedACB" 
     :isFavourite="isFavourite(favourite)" 
-    @removeFavourite="removeDrinkACB"/>
+    @removeFavourite="removeDrinkACB"
+    @addFavourite="addDrinkACB"/>
 </template>
 
 <script>
@@ -35,6 +36,7 @@ export default {
   },
   methods: {
     ...mapActions(useUserStore, ["removeFavourite"]),
+    ...mapActions(useUserStore, ["addFavourite"]),
     ...mapActions(useUserStore, ["isFavourite"]),
 
     drinkClickedACB() {
@@ -49,6 +51,13 @@ export default {
       if (confirm('Are you sure you want to remove ' + name + " from your favourites?")){
         this.removeFavourite(this.favourite)
       }
+      
+    },
+    addDrinkACB(){
+      let name = this.nameStr();
+      console.log("should add", name)
+      this.addFavourite(this.favourite)
+      
       
     },
     imgUrl(){

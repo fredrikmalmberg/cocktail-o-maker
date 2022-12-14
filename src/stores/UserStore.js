@@ -23,16 +23,15 @@ export const useUserStore = defineStore("userStore", {
       this.currentUser = user;
       console.log(this.currentUser);
     },
-    addFavourite(drinkID) {
-      if (
-        !this.favourites.find(function (id) {
-          return id !== drinkID;
-        })
-      ) {
-        this.favourites = [drinkID, ...this.favourites];
-      } else {
-        console.log("Dink already in favourites");
-      }
+
+    addFavourite(drinkID){
+            if (this.favourites.find(function(id){
+                return id === drinkID;
+              })){
+                console.log("Drink already in favourites")}
+                else{       
+              this.favourites = [drinkID, ...this.favourites];
+            }
     },
     removeFavourite(drinkID) {
       drinkID = parseInt(drinkID);
@@ -43,20 +42,24 @@ export const useUserStore = defineStore("userStore", {
         }),
       ];
     },
+
     isFavourite(drinkID) {
       return this.favourites.indexOf(drinkID) !== -1;
     },
-    addIngredient(ingredientID) {
-      if (
-        !this.ingredients.find(function (id) {
-          return id !== ingredientID;
-        })
-      ) {
-        this.ingredients = [ingredientID, ...this.ingredients];
-      } else {
-        console.log("Ingredient already in list");
-      }
+
+    addIngredient(ingredientID){
+
+      ingredientID = parseInt(ingredientID);
+
+      
+        if (this.ingredients.find(function(id){
+            return id === ingredientID;
+          })){
+            console.log("Ingredient already in list")
+          }
+        else{this.ingredients = [ingredientID, ...this.ingredients];}
     },
+        
     removeIngredient(ingredientID) {
       this.ingredients = [
         ...this.ingredients.filter(function (id) {

@@ -2,6 +2,7 @@
     <ingredientThumb v-if="resultPromiseState.data" 
     :name="nameString()" 
     :hasIngredient="hasIngredient()" 
+    @addIngredient="addIngredientACB"
     @removeIngredient="removeIngredientACB"/>
     <div v-else>Loading</div>  
 </template>
@@ -40,6 +41,13 @@ export default {
       if (confirm('Are you sure you want to remove ' + name + " from your ingredients?")){
         this.userStore.removeIngredient(this.ingredient);
       }
+      
+    },
+    addIngredientACB(){
+      let name = this.nameString();
+      console.log("should add", name)
+      this.userStore.addIngredient(this.ingredient);
+      
       
     },
     hasIngredient(){

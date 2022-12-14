@@ -2,6 +2,7 @@
     <ingredientThumb v-if="resultPromiseState.data"
     :name="ingredientName" 
     :hasIngredient="hasIngredient()" 
+    @addIngredient="addIngredientACB"
     @removeIngredient="removeIngredientACB">
     test</ingredientThumb>
 
@@ -43,9 +44,15 @@
             this.userStore.removeIngredient(id);
           }
         },
+        addIngredientACB(){
+          let id = this.ingredientID();
+          console.log("should add", this.ingredientName, id)
+          this.userStore.addIngredient(id);
+          
+        },
         hasIngredient(){
           let id = this.ingredientID();
-          console.log(this.ingredientName, id);
+          //console.log(this.ingredientName, id);
           return (this.userStore.ingredients.indexOf(id) !== -1)
         }
       }
