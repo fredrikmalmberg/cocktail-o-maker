@@ -47,13 +47,19 @@
         addIngredientACB(){
           let id = this.ingredientID();
           console.log("should add", this.ingredientName, id)
-          this.userStore.addIngredient(id);
+          this.userStore.addIngredient(id, this.ingredientName);
           
         },
         hasIngredient(){
           let id = this.ingredientID();
-          //console.log(this.ingredientName, id);
-          return (this.userStore.ingredients.indexOf(id) !== -1)
+          let hasIng = false
+          function hasID(inventoryDict) {
+            if (id === inventoryDict['id']){
+              hasIng = true
+            }
+          }
+          this.userStore.ingredients.forEach(hasID)
+          return hasIng
         }
       }
     

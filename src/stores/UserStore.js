@@ -13,7 +13,7 @@ export const useUserStore = defineStore("userStore", {
     username: "hugo",
     underTwenty: true,
     favourites: [11410, 11417],
-    ingredients: [1, 2, 552],
+    ingredients: [{'id':1, 'name': "vodka"}, {'id':2, 'name': "Gin"}, {'id':165, 'name':"Creme de Cassis"}],
   }),
   actions: {
     confirmedUnderTwenty() {
@@ -47,24 +47,28 @@ export const useUserStore = defineStore("userStore", {
       return this.favourites.indexOf(drinkID) !== -1;
     },
 
-    addIngredient(ingredientID){
-
+    addIngredient(ingredientID, IngredientName){
       ingredientID = parseInt(ingredientID);
-
-      
-        if (this.ingredients.find(function(id){
-            return id === ingredientID;
+        if (this.ingredients.find(function(ingredientDict){
+            return ingredientDict['id'] === ingredientID;
           })){
             console.log("Ingredient already in list")
           }
-        else{this.ingredients = [ingredientID, ...this.ingredients];}
+        else{this.ingredients = [{'id':ingredientID,'name':IngredientName }, ...this.ingredients];}
+    },
+
+    hasIngredientID(ingredientID){
+      return (this.ingredients.find(function(ingredientDict){
+        return ingredientDict['id'] === ingredientID;
+      }))
     },
         
     removeIngredient(ingredientID) {
+      function idNotIngredient(ingredientDict){
+        return (ingredientDict['id'] !== ingredientID)
+      }
       this.ingredients = [
-        ...this.ingredients.filter(function (id) {
-          return id !== ingredientID;
-        }),
+        ...this.ingredients.filter(idNotIngredient),
       ];
     },
   },

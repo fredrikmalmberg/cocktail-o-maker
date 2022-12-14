@@ -21,9 +21,12 @@ export default {
   },
   mounted() {
     this.resultPromiseState = getIngredientDetails(this.ingredient);
+    this.allIngredients = this.userStore.ingredients;
   },
   data() {
-    return { resultPromiseState: { data: null, error: null} };
+    return { 
+      allIngredients: [],
+      resultPromiseState: { data: null, error: null} };
   },
   setup() {
     const userStore = useUserStore();
@@ -36,22 +39,15 @@ export default {
         return this.resultPromiseState.data.ingredients[0].strIngredient;
     },
     removeIngredientACB(){
-      let name = this.nameString();
-      console.log("should remove", name)
       if (confirm('Are you sure you want to remove ' + name + " from your ingredients?")){
         this.userStore.removeIngredient(this.ingredient);
       }
-      
     },
     addIngredientACB(){
-      let name = this.nameString();
-      console.log("should add", name)
       this.userStore.addIngredient(this.ingredient);
-      
-      
     },
     hasIngredient(){
-      return (this.userStore.ingredients.indexOf(this.ingredient) !== -1)
+      return (this.allIngredients.some(e => e.id === this.ingredient)) 
     }
   },
 }

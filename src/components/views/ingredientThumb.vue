@@ -5,9 +5,10 @@
     v-if="hasIngredient" 
     rounded="pill"
     class="mx-2"
+    color="green"
     x-large
     @click="$emit('removeIngredient')"
-    >✓ {{ name }}</v-btn>
+    >{{ name }}</v-btn>
     <v-btn 
     v-else
     rounded="pill"

@@ -6,6 +6,8 @@
     v-else 
     :imgUrl="imgUrl()" 
     :name="nameStr()" 
+    :ingredientsInInventory="ingredientsInInventory()"
+    :totalIngredients="totalIngredients()"
     @drinkClicked="drinkClickedACB" 
     :isFavourite="isFavourite(favourite)" 
     @removeFavourite="removeDrinkACB"
@@ -16,6 +18,7 @@
 import drinkThumb from '../views/drinkThumb.vue'
 import {useUserStore} from '../../stores/UserStore';
 import {getDrinkDetails} from '../../cocktailDBIntegration';
+//import {getIngredientDetails} from '../../cocktailDBIntegration';
 import { mapActions} from "pinia";
 
 export default {
@@ -23,16 +26,19 @@ export default {
     drinkThumb,
   },
   props: {
-    favourite: {required: true}
+    favourite: {required: true},
+    ingredientList: {required: true, default : []}
   },
   mounted() {
     this.resultPromiseState = getDrinkDetails(this.favourite);
+    this.ingredientsInInventory();
   },
   data() {
     return { 
       name : "",
 
-      resultPromiseState: { data: null, error: null} };
+      resultPromiseState: { data: null, error: null} ,
+      ingredientResultPromiseState: { data: null, error: null} }
   },
   methods: {
     ...mapActions(useUserStore, ["removeFavourite"]),
@@ -51,20 +57,56 @@ export default {
       if (confirm('Are you sure you want to remove ' + name + " from your favourites?")){
         this.removeFavourite(this.favourite)
       }
-      
     },
     addDrinkACB(){
       let name = this.nameStr();
       console.log("should add", name)
       this.addFavourite(this.favourite)
-      
-      
     },
     imgUrl(){
       return this.resultPromiseState.data.drinks[0].strDrinkThumb
     },
     nameStr(){
       return this.resultPromiseState.data.drinks[0].strDrink
+    },
+    ingredientsForDrink(){
+      var arr = []
+      if (this.resultPromiseState.data){
+        for (let i = 1; i < 16; i++) {
+          let ingredientToAdd = this.resultPromiseState.data.drinks[0]["strIngredient"+i]
+          if (ingredientToAdd){
+            arr = [...arr, ingredientToAdd]
+          }
+        }
+      }
+      return arr;
+    },
+    totalIngredients(){
+      return this.ingredientsForDrink().length;
+    },
+    ingredientsInInventory(){
+      let matchingIngredients = 0;
+      let ingredientsNeeded = this.ingredientsForDrink();
+      let ingredientsOfUser = this.ingredientList;
+      console.log("ingredients needed", ingredientsNeeded);
+      console.log("ingredients I have", ingredientsOfUser);
+      let name2 = ""
+      function matchName(name1){
+        console.log("names", name1, name2)
+          return (name1===name2);
+        }
+      for (var i =0; i<ingredientsOfUser.length; i++){
+        name2=ingredientsOfUser[i]['name'];
+        console.log(ingredientsOfUser[i]['name']);
+        console.log(ingredientsNeeded);
+        if (ingredientsNeeded.find(matchName)){
+          matchingIngredients += 1;
+        }
+      //  this.ingredientResultPromiseState = getIngredientDetails(ingredientsOfUser(i));
+      //  let ingredientName = this.ingredientResultPromiseState.data.ingredients[0].strIngredient;
+      //  console.log(ingredientName)
+      }
+      return matchingIngredients
     },
   },
 }

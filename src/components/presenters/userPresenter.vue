@@ -1,20 +1,20 @@
 <template>
   <v-container>
-    {{ userName }}
+    <h1>{{ userName }}</h1>
     <v-row justify="space-around">
       <v-col class="mt-2" cols="12">
         <h2>Favourites</h2>
       </v-col>
       <div class="searchResult" v-for="f in favourites" v-bind:key="f">
-        <drinkThumbPresenter :favourite="f" />
+        <drinkThumbPresenter :favourite="f" :ingredientList="ingredientList"/>
       </div>
-      <v-row align="center" justify="center">
+      
         <v-col>
-          <router-link to="/research">
-          <v-btn dark flat absolute top> Find more favourites.. </v-btn>
+          <router-link to="/research" style="text-decoration: none; color: inherit;">
+          <v-btn rounded absolute top> Find more favourites.. </v-btn>
         </router-link>
         </v-col>
-      </v-row>
+      
     </v-row>
 
     <v-row>
@@ -22,9 +22,9 @@
         <h2>My Ingredients</h2>
       </v-col>
       <span v-for="i in ingredientList" v-bind:key="i">
-        <ingredientThumbPresenter :ingredient="i" />
+        <ingredientThumbPresenter :ingredient="i['id']" />
       </span>
-      <router-link to="/ingredients">
+      <router-link to="/ingredients" style="text-decoration: none; color: inherit;">
         <v-btn class="mx-2" fab dark rounded color="indigo">
           <v-icon dark> mdi-plus </v-icon> Add more
         </v-btn>
@@ -73,7 +73,8 @@ export default {
 
   computed: {
     favourites() {
-      return [...this.userStore.favourites, 11007];
+      //return [...this.userStore.favourites, 11007]; //for debug
+      return this.userStore.favourites;
     },
     ingredientList() {
       return this.userStore.ingredients;

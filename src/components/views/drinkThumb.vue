@@ -6,6 +6,8 @@ export default {
     name: {required: true},
     imgUrl: {required: true},
     isFavourite: {required: false},
+    ingredientsInInventory: {required: true},
+    totalIngredients: {required: true},
   },
 }
 
@@ -44,6 +46,8 @@ export default {
         mdi-heart
       </v-icon>
         </v-btn>
+        You have {{ingredientsInInventory}} of {{totalIngredients}} ingredients
+
       </v-card-actions>
       
     </v-card>
