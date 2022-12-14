@@ -8,25 +8,7 @@
       <div v-if="searchResult.post">
         <div>
           <div class="searchResult" v-for="element in searchResult.post.drinks" :key="element.idDrink">
-            <v-card
-                elevation="2">
-              <v-img
-                  @click="detail(element.idDrink)"
-                  height="200"
-                  width="200"
-                  v-bind:src="element.strDrinkThumb"
-                  style="border-radius: 10%; border: 5px solid #f5f5f5;"
-              ></v-img>
-              <v-card-title>{{ element.strDrink }}</v-card-title>
-              <v-rating
-                  :value="4.5"
-                  color="amber"
-                  dense
-                  half-increments
-                  readonly
-                  size="14"
-              ></v-rating>
-            </v-card>
+            <drinkThumbPresenter :favourite="element['idDrink']"/>
           </div>
         </div>
       </div>
@@ -35,7 +17,7 @@
 </template>
 
 <script>
-
+import drinkThumbPresenter from '../presenters/drinkThumbPresenter.vue';
 export default {
   setup() {
   },
@@ -46,6 +28,9 @@ export default {
       console.log(idDrink);
       this.$emit('drinkClickedEvent', idDrink);
     }
+  },
+  components:{
+    drinkThumbPresenter
   }
 }
 </script>

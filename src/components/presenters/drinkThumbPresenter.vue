@@ -27,11 +27,12 @@ export default {
   },
   props: {
     favourite: {required: true},
-    ingredientList: {required: true, default : []}
+    ingredientList: {required: false, default : []}
   },
   mounted() {
     this.resultPromiseState = getDrinkDetails(this.favourite);
     this.ingredientsInInventory();
+    this.favouriteInt = parseInt(this.favourite);
   },
   data() {
     return { 
