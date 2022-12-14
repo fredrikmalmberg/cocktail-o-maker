@@ -25,6 +25,7 @@ export const useUserStore = defineStore("userStore", {
     },
 
     addFavourite(drinkID){
+      drinkID = parseInt(drinkID);
             if (this.favourites.find(function(id){
                 return id === drinkID;
               })){
@@ -44,6 +45,7 @@ export const useUserStore = defineStore("userStore", {
     },
 
     isFavourite(drinkID) {
+      drinkID = parseInt(drinkID);
       return this.favourites.indexOf(drinkID) !== -1;
     },
 
