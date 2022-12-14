@@ -58,6 +58,6 @@ export default {
 
 <style scoped>
 .card{
-  background-color: #efefef;
+  background-color: #fafafa;
 }
 </style>

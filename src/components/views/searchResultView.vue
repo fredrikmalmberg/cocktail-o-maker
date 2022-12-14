@@ -41,10 +41,7 @@ export default {
 .searchResult {
   text-align: center;
   display: inline-block;
-  width: 200px;
-  vertical-align: text-top;
   margin-inline: 5px;
-  overflow: auto;
   margin-top: 5px;
   
 }

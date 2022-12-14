@@ -85,10 +85,6 @@ export default {
 
 <style scoped>
 .searchResult {
-  text-align: center;
-  display: inline-block;
-  vertical-align: text-top;
-  margin-inline: 40px;
-  overflow: auto;
+  margin-inline: 5px;
 }
 </style>
