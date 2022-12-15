@@ -2,7 +2,7 @@
   <div v-if="resultPromiseState.data">
     <v-text-field  label="Search ingredients.." variant="solo"
             clearable v-model="searchTerm"  />
-    <span v-for="(i, item) in allIngredientNames" v-bind:key="item">
+    <span v-for="(i) in allIngredientNames" v-bind:key="i">
       <ingredientSearchPresenter :ingredientName="i" />
     </span>
   </div>
