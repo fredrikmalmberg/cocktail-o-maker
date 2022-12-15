@@ -2,6 +2,7 @@
   <v-container fill-height @keydown.enter.prevent="registerClicked()">
     <v-row no-gutters>
       <v-col cols="12" class="title mb-5 text-center"> Register</v-col>
+      <form>
       <v-col cols="12">
         <v-text-field
             label="Display name"
@@ -10,6 +11,7 @@
             hide-details
             class="mb-2"
             v-model="displayNameModel"
+            @blur="v$.displayNameModel.$touch"
         ></v-text-field>
       </v-col>
       <v-col cols="12">
@@ -54,8 +56,7 @@
           Register
         </v-btn>
       </v-col>
-
-
+    </form>
     </v-row>
   </v-container>
 </template>
@@ -70,13 +71,43 @@ import {
   //signOut,
 } from "firebase/auth";
 import {useUserStore} from '../../stores/UserStore';
+import useVuelidate from '@vuelidate/core'
+import { required, email, minLength } from '@vuelidate/validators'
+
 
 export default {
+  setup () {
+    return { v$: useVuelidate() }
+  },
+  validations() {
+    return {
+      form: {
+        firstName: { 
+          required: {
+            $validator: this.validName,
+            $message: 'Invalid Name. Valid name only contain letters, dashes (-) and spaces'
+          } 
+        },
+        lastName: { 
+          required: {
+            $validator: this.validName,
+            $message: 'Invalid Name. Valid name only contain letters, dashes (-) and spaces'
+          } 
+        },
+        email: { required, email },
+        password: { required, min: minLength(6) },
+        confirmPassword: { required }
+      },
+    }
+  },
+    
   data() {
     return {
-      emailModel: "",
-      passwordModel: "",
-      displayNameModel: "",
+      form: {
+        displayNameModel: "",
+        emailModel: "",
+        passwordModel: "",
+      },
       acceptTerms: false,
       userStore: useUserStore()
     };
@@ -98,7 +129,16 @@ export default {
         alert("Unfortunately you cannot become a member if you're not over 18.")
       }
     },
+  validName(name) {
+  let validNamePattern = new RegExp("^[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$");
+  if (validNamePattern.test(name)){
+    return true;
+  }
+  return false;
+}
+
   },
+
 };
 </script>
 
