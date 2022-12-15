@@ -1,19 +1,14 @@
 <template>
-  <div v-if="showRecommendations">
-    <div v-for="f in recommendationList()" v-bind:key="f">
-        <drinkThumbPresenter :favourite="f" :ingredientList="ingredientList" />
-      </div>
-  </div>
+    <recommendationView v-if="showRecommendations" :ingredientList="ingredientList" :recommendationList="recommendationList()"></recommendationView>
 </template>
 
 <script>
-//import recommendationView from "../views/recommendationView.vue";
-import drinkThumbPresenter from "./drinkThumbPresenter.vue";
+import recommendationView from "../views/recommendationView.vue";
 import { useUserStore } from "../../stores/UserStore";
 import { searchByIngredient } from "../../cocktailDBIntegration.js";
 export default {
-  components: { //recommendationView,
-drinkThumbPresenter },
+  components: { recommendationView,
+},
   setup() {
     const userStore = useUserStore();
     return {
@@ -64,20 +59,14 @@ drinkThumbPresenter },
           recommendationDict[arr[n]] = 1;
         }
       }
-      //console.log(recommendationDict);
       recommendationDict = Object.keys(recommendationDict).map(function (key) {
         return [key, recommendationDict[key]];
       });
-
-      // Sort the array based on the second element
       recommendationDict.sort(function (firstID, secondID) {
         return secondID[1] - firstID[1];
       });
-
-      // Create a new array with only the first 5 items
-      //console.log(recommendationDict.slice(0, 5));
       let recommendationArr = []
-      for (const item of Object.entries(recommendationDict.slice(0, 5))) {
+      for (const item of Object.entries(recommendationDict.slice(0, 15))) {
         recommendationArr = [...recommendationArr, parseInt(item[1][0])]
         }
     //console.log(recommendationArr);
@@ -93,6 +82,4 @@ drinkThumbPresenter },
   },
 };
 </script>
-<style scoped>
 
-</style>

@@ -18,7 +18,6 @@
 import drinkThumb from '../views/drinkThumb.vue'
 import {useUserStore} from '../../stores/UserStore';
 import {getDrinkDetails} from '../../cocktailDBIntegration';
-//import {getIngredientDetails} from '../../cocktailDBIntegration';
 import { mapActions} from "pinia";
 
 export default {
@@ -89,23 +88,15 @@ export default {
       let matchingIngredients = 0;
       let ingredientsNeeded = this.ingredientsForDrink();
       let ingredientsOfUser = this.ingredientList;
-      //console.log("ingredients needed", ingredientsNeeded);
-      //console.log("ingredients I have", ingredientsOfUser);
       let name2 = ""
       function matchName(name1){
-        //console.log("names", name1, name2)
           return (name1==name2);
         }
       for (var i =0; i<ingredientsOfUser.length; i++){
         name2=ingredientsOfUser[i]['name'];
-        //console.log(ingredientsOfUser[i]['name']);
-        //console.log(ingredientsNeeded);
         if (ingredientsNeeded.find(matchName)){
           matchingIngredients += 1;
         }
-      //  this.ingredientResultPromiseState = getIngredientDetails(ingredientsOfUser(i));
-      //  let ingredientName = this.ingredientResultPromiseState.data.ingredients[0].strIngredient;
-      //  console.log(ingredientName)
       }
       return matchingIngredients
     },
