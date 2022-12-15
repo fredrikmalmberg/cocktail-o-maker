@@ -4,14 +4,16 @@
     <h1>Welcome to Cocktail-o-Maker!</h1>
     <p>
       <br />Here at Cocktail-o-Maker we present you with unique drink recipies.
-      <br />Since the drinks contain alcohol we only let adults use the recipies.
-      <br /><br />
+      <br />Since the drinks contain alcohol we only let adults use the
+      recipies. <br /><br />
       Please log in or register to be a part of our cocktail-o-makers!
     </p>
 
     <div class="login-button">
-      <v-btn><router-link to="/login">Log in</router-link></v-btn
-      ><v-btn style="margin-left: 5%"><router-link to="/register">Register</router-link></v-btn>
+      <router-link to="/login"> <v-btn>Log in</v-btn></router-link>
+
+      <router-link to="/register">
+        <v-btn style="margin-left: 5%">Register</v-btn></router-link>
     </div>
   </div>
 </template>

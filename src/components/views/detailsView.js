@@ -11,7 +11,7 @@ function DetailsView(props) {
         <div class="drinkName" style="font-size:30px; font-weight:bold; padding-left:5% ">Drinkname: {option.strDrink} </div>
         <img
           src={"" + option.strDrinkThumb}
-          height="200"
+          height="250"
           style="border-radius: 10%; border: 5px solid #f5f5f5; display: block; margin-left: auto; margin-right: auto;"
         />
         <div style="padding-left:5%">
