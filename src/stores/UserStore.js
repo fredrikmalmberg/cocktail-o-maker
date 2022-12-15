@@ -7,14 +7,19 @@ import { defineStore } from "pinia";
 // getters are functions that give us the info we want, in the way we want
 
 export const useUserStore = defineStore("userStore", {
-  state: () => ({
+  state: () => {
+    return {
     currentUser: null,
-    login: false,
-    username: "hugo",
+    loggedin: false,
+    username: "",
     underTwenty: true,
-    favourites: [11410, 11417],
-    ingredients: [{'id':1, 'name': "vodka"}, {'id':2, 'name': "Gin"}, {'id':165, 'name':"Creme de Cassis"}],
-  }),
+    favourites: [],
+    ingredients: [],
+    //username: "hugo",
+    //underTwenty: true,
+    //favourites: [11410, 11417],
+    //ingredients: [{'id':1, 'name': "vodka"}, {'id':2, 'name': "Gin"}, {'id':165, 'name':"Creme de Cassis"}],
+  }},
   actions: {
     confirmedUnderTwenty() {
       this.underTwenty = false;
@@ -25,7 +30,7 @@ export const useUserStore = defineStore("userStore", {
     },
 
     addFavourite(drinkID){
-      drinkID = parseInt(drinkID);
+      drinkID = parseInt(drinkID)
             if (this.favourites.find(function(id){
                 return id === drinkID;
               })){
@@ -45,7 +50,6 @@ export const useUserStore = defineStore("userStore", {
     },
 
     isFavourite(drinkID) {
-      drinkID = parseInt(drinkID);
       return this.favourites.indexOf(drinkID) !== -1;
     },
 

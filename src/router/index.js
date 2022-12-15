@@ -8,7 +8,6 @@ import registerComponent from '../components/presenters/registerComponent.vue'
 import loginComponent from '../components/presenters/loginComponent.vue'
 import logoutPresenter from '../components/presenters/logoutPresenter'
 
-
 const routes = [
   {
     path: '/',
@@ -22,7 +21,7 @@ const routes = [
     component: detailsAPITest 
   },
   { 
-    path: '/user/:name', 
+    path: '/user/', 
     name: 'userHome', 
     component: userComponent 
   },
@@ -58,5 +57,6 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
 
 export default router

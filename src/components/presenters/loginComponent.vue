@@ -40,6 +40,7 @@ import {
   //onAuthStateChanged,
   //signOut,
 } from 'firebase/auth'
+//import { ref, set } from "firebase/database";
 import {useUserStore} from '../../stores/UserStore';
 
 export default {
@@ -56,8 +57,10 @@ export default {
       const auth = getAuth()
       signInWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
           .then(response => {
-            this.userStore.setCurrentUser(response);
-            this.$router.push({name: 'main page'})
+            /* eslint-disable */
+            console.log(response)
+            //this.userStore.setCurrentUser(response);
+            this.$router.push({name: 'userHome'});
           }).catch(error => {
         console.log(error)
       })

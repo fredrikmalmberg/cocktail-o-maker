@@ -9,7 +9,7 @@
     :ingredientsInInventory="ingredientsInInventory()"
     :totalIngredients="totalIngredients()"
     @drinkClicked="drinkClickedACB" 
-    :isFavourite="isFavourite(favourite)" 
+    :isFavourite="isFavourite(favouriteInt)" 
     @removeFavourite="removeDrinkACB"
     @addFavourite="addDrinkACB"/>
 </template>
@@ -54,14 +54,14 @@ export default {
     },
     removeDrinkACB(){
       let name = this.nameStr();
-      console.log("should remove", name)
+      //console.log("should remove", name)
       if (confirm('Are you sure you want to remove ' + name + " from your favourites?")){
         this.removeFavourite(this.favourite)
       }
     },
     addDrinkACB(){
-      let name = this.nameStr();
-      console.log("should add", name)
+      //let name = this.nameStr();
+      //console.log("should add", name)
       this.addFavourite(this.favourite)
     },
     imgUrl(){
@@ -89,17 +89,17 @@ export default {
       let matchingIngredients = 0;
       let ingredientsNeeded = this.ingredientsForDrink();
       let ingredientsOfUser = this.ingredientList;
-      console.log("ingredients needed", ingredientsNeeded);
-      console.log("ingredients I have", ingredientsOfUser);
+      //console.log("ingredients needed", ingredientsNeeded);
+      //console.log("ingredients I have", ingredientsOfUser);
       let name2 = ""
       function matchName(name1){
-        console.log("names", name1, name2)
-          return (name1===name2);
+        //console.log("names", name1, name2)
+          return (name1==name2);
         }
       for (var i =0; i<ingredientsOfUser.length; i++){
         name2=ingredientsOfUser[i]['name'];
-        console.log(ingredientsOfUser[i]['name']);
-        console.log(ingredientsNeeded);
+        //console.log(ingredientsOfUser[i]['name']);
+        //console.log(ingredientsNeeded);
         if (ingredientsNeeded.find(matchName)){
           matchingIngredients += 1;
         }

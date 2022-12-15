@@ -20,6 +20,12 @@ function getIngredientDetails(id){
    return { isFetching, error, data };
 }
 
+function searchByIngredient(name){
+   const complete_url = BASE_URL + "filter.php?i=" + name
+   const { isFetching, error, data } = useFetch(complete_url).get().json();
+   return { isFetching, error, data };
+}
+
 function searchDrinkFirstLetter(id){
    const complete_url = BASE_URL + "search.php?f=" + id 
    const { isFetching, error, data } = useFetch(complete_url).get().json();
@@ -31,6 +37,8 @@ function getIngredientList(){
    const { isFetching, error, data } = useFetch(complete_url).get().json();
    return { isFetching, error, data };
 }
+
+
 
 function searchIngredientByName(text){
    const complete_url = BASE_URL + "search.php?i=" + text;
@@ -56,5 +64,5 @@ function getAlcoolicFilterList(){
    return { isFetching, error, data };
 }
 
-export {getDrinkDetails, getIngredientDetails, searchDrinkByName, searchIngredientByName, searchDrinkFirstLetter, getIngredientList, getCategorieList, getGlassesList, getAlcoolicFilterList};
+export {getDrinkDetails, getIngredientDetails, searchDrinkByName, searchByIngredient, searchIngredientByName, searchDrinkFirstLetter, getIngredientList, getCategorieList, getGlassesList, getAlcoolicFilterList};
 /* eslint-disable */

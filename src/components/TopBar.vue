@@ -2,38 +2,53 @@
 
 <template>
   <v-app-bar color="#ffffff" dark>
-    <a href="/">
+    <router-link v-if="!isLoggedIn" to="/">
       <img class="mr-3" :src="require('/src/assets/logo.png')" height="40"
-    /></a>
+    /></router-link>
+    <router-link v-else to="/research">
+      <img class="mr-3" :src="require('/src/assets/logo.png')" height="40"
+    /></router-link>
     <v-spacer></v-spacer>
-    <v-btn
+    <router-link to="/user/">
+    <v-btn v-if="isLoggedIn"
+      class="mx-4 white--text"
+      elevation="2"
+      x-large
+      rounded
+      :disabled="!isLoggedIn"
+      color="deep-purple darken-1"
+    >
+      User Home
+    </v-btn></router-link>
+    <router-link to="/login">
+    <v-btn v-if="!isLoggedIn"
       class="mx-4 white--text"
       elevation="2"
       x-large
       rounded
       color="deep-purple darken-1"
-    >
-      <router-link to="/user/hugo">User Home</router-link>
-    </v-btn>
-    <v-btn
+      :disabled="isLoggedIn"
+      >Log in</v-btn
+    ></router-link>
+    <router-link to="/register">
+    <v-btn v-if="!isLoggedIn"
       class="mx-4 white--text"
       elevation="2"
       x-large
       rounded
       color="deep-purple darken-1"
-      :disabled="isLoggedIn()"
-      ><router-link to="/login">Log in</router-link></v-btn
-    >
-    <v-btn
+      :disabled="isLoggedIn"
+      >Register</v-btn></router-link>
+    <router-link to="/logout">
+    <v-btn v-if="isLoggedIn"
       class="mx-4 white--text"
       elevation="2"
       x-large
       rounded
       color="deep-purple darken-1"
       @click="logoutClicked()"
-      :disabled="!isLoggedIn()"
-      ><router-link to="/logout">Log Out</router-link></v-btn
-    >
+      :disabled="!isLoggedIn"
+      >Log Out</v-btn> </router-link>
   </v-app-bar>
 </template>
 
@@ -57,13 +72,15 @@ export default {
         .catch((error) => {
           console.log("error: ", error);
         });
-    },
-    isLoggedIn() {
-      if (this.userStore.currentUser) {
-        return true;
       }
     },
-  },
+    
+  
+  computed: {
+    isLoggedIn() {
+      return this.userStore.loggedin
+    }
+  }
 };
 </script>
 

@@ -69,6 +69,7 @@ import {
   //onAuthStateChanged,
   //signOut,
 } from "firebase/auth";
+import {useUserStore} from '../../stores/UserStore';
 
 export default {
   data() {
@@ -77,15 +78,18 @@ export default {
       passwordModel: "",
       displayNameModel: "",
       acceptTerms: false,
+      userStore: useUserStore()
     };
   },
   methods: {
+    /* eslint-disable */
     registerClicked() {
       const auth = getAuth();
       if (this.acceptTerms) {
         createUserWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
             .then(() => {
-              this.$router.push({name: "login"});
+              this.userStore.username = this.displayNameModel
+              this.$router.push({name: "userHome"});
             })
             .catch((error) => {
               console.log(error);
