@@ -1,5 +1,5 @@
 <template>
-  <v-container fill-height @keydown.enter.prevent="registerClicked()">
+  <v-container fill-height @keydown.enter.prevent="submit()">
     <v-responsive class="d-flex align-center text-center fill-height">
       <v-form
         ref="form"
@@ -35,13 +35,13 @@
         <v-checkbox
 
           v-model="acceptTerms"
-          :rules="[v => !!v || 'You must agree to continue!']"
-          label="Do you agree?"
+          :rules="[v => !!v || 'You have to be over 18 to use our website!']"
+          label="Are you over 18 years?"
           required
         ></v-checkbox>
 
         <v-btn
-          color="success"
+          color="orange"
           class="mt-7"
           @click="submit"
           variant="flat"
@@ -71,6 +71,7 @@ export default {
       
       userStore: useUserStore(),
       valid: true,
+      acceptTerms: false,
     displayNameModel: '',
     displayNameRules: [
       v => !!v || 'Name is required',
@@ -84,7 +85,7 @@ export default {
     passwordModel: '',
     passwordRules: [
       v => !!v || 'password is required',
-      v => (v && v.length <= 10) || 'password must be less than 6 characters',
+      v => (v && v.length > 6) || 'password must be longer than 6 characters',
     ],
     };
   },
@@ -92,23 +93,27 @@ export default {
     /* eslint-disable */
     async submit() {
       const { valid } = await this.$refs.form.validate()
-      if (valid) alert('Form is valid')
-      const auth = getAuth();
-      if (this.acceptTerms) {
-        createUserWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
+      if (valid){
+        const auth = getAuth();
+      createUserWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
             .then(() => {
               this.userStore.username = this.displayNameModel
-              this.$router.push({name: "userHome"});
+              this.$router.push({name: "login"});
             })
             .catch((error) => {
               console.log(error);
             });
-      } else {
-        alert("Unfortunately you cannot become a member if you're not over 18.")
+
       }
+      
+      
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-input__details{
+  text-align: left;
+  padding-left: 15px;
+}</style>
