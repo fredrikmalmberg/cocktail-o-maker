@@ -2,8 +2,8 @@
   <div v-if="resultPromiseState.data">
     <v-text-field  label="Search ingredients.." variant="solo"
             clearable v-model="searchTerm"  />
-    <span v-for="(i) in allIngredientNames" v-bind:key="i">
-      <ingredientSearchPresenter :ingredientName="i" />
+    <span v-for="(i) in allIngredientNames" v-bind:key="i[0]">
+      <ingredientSearchPresenter :ingredientName="i[1]" />
     </span>
   </div>
 </template>
@@ -32,7 +32,7 @@ export default {
           if (!this.searchTerm || this.searchTerm === "") {
             arr = [
               ...arr,
-              this.resultPromiseState.data.drinks[n].strIngredient1,
+              [n,this.resultPromiseState.data.drinks[n].strIngredient1],
             ];
           } else {
             if (
@@ -42,7 +42,7 @@ export default {
             ) {
               arr = [
                 ...arr,
-                this.resultPromiseState.data.drinks[n].strIngredient1,
+                [n,this.resultPromiseState.data.drinks[n].strIngredient1],
               ];
             }
           }

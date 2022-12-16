@@ -12,7 +12,7 @@ export const useUserStore = defineStore("userStore", {
     currentUser: null,
     loggedin: false,
     username: "",
-    underTwenty: true,
+    underTwenty: false,
     favourites: [],
     ingredients: [],
     //username: "hugo",

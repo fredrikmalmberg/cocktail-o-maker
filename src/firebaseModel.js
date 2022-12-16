@@ -1,12 +1,12 @@
 import {onValue, ref, set } from "firebase/database";
 
 function updateFirebaseFromModel(database, store) {
-    
-    const favs = store.favourites
-    console.log("favs", favs)
-    console.log(ref(database, '/' + store.currentUser ))
+    console.log("Running updateFirebaseFromModel")
+    //const favs = store.favourites
+    //console.log("favs", favs)
+    //console.log(ref(database, '/' + store.currentUser ))
     //database.ref("/uid/store/").set(store);
-    if (store.favourites){
+    if (store.currentUser){
         console.log("is sending model to firebase")
         set(ref(database, '/' + store.currentUser ), {
             favourites: store.favourites,
@@ -25,8 +25,8 @@ function updateFirebaseFromModel(database, store) {
 
 
 function updateModelFromFirebase(database, store) {
-    console.log("should fetch model from firebase")
-    console.log(store)
+    console.log("Running updateModelFromFirebase")
+    //console.log(store)
     //get(ref(database, '/' + store.currentUser ), {
     //    favourites: store.favourites,
     //    username: store.username,
@@ -44,11 +44,13 @@ function updateModelFromFirebase(database, store) {
             if (data.favourites){
                 store.favourites = data.favourites
             }
+            else {store.favourites = []}
             if (data.ingredients){
                 store.ingredients = data.ingredients
             }
+            else {store.ingredients = []}
         }}
-    console.log("data is", data)
+    //console.log("data is", data)
     
     });
     return;
