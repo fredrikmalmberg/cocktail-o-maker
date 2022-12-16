@@ -26,7 +26,7 @@ export const useUserStore = defineStore("userStore", {
     },
     setCurrentUser(user) {
       this.currentUser = user;
-      console.log(this.currentUser);
+      //console.log(this.currentUser);
     },
 
     addFavourite(drinkID){
@@ -34,14 +34,15 @@ export const useUserStore = defineStore("userStore", {
             if (this.favourites.find(function(id){
                 return id === drinkID;
               })){
-                console.log("Drink already in favourites")}
+                //console.log("Drink already in favourites")
+              }
                 else{       
               this.favourites = [drinkID, ...this.favourites];
             }
     },
     removeFavourite(drinkID) {
       drinkID = parseInt(drinkID);
-      console.log(drinkID);
+      //console.log(drinkID);
       this.favourites = [
         ...this.favourites.filter(function (id) {
           return id !== drinkID;
@@ -58,7 +59,7 @@ export const useUserStore = defineStore("userStore", {
         if (this.ingredients.find(function(ingredientDict){
             return ingredientDict['id'] === ingredientID;
           })){
-            console.log("Ingredient already in list")
+            //console.log("Ingredient already in list")
           }
         else{this.ingredients = [{'id':ingredientID,'name':IngredientName }, ...this.ingredients];}
     },

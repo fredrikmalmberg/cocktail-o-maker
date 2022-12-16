@@ -67,7 +67,7 @@ export default {
       const auth = getAuth();
       signOut(auth)
         .then(() => {
-          console.log("user logged out");
+          //console.log("user logged out");
         })
         .catch((error) => {
           console.log("error: ", error);

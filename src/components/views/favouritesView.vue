@@ -20,9 +20,6 @@ export default {
   components: {
     drinkThumbPresenter,
   },
-  data() {
-    
-  },
   props: {
     favourites: {required: false},
     ingredientList: {required: true},

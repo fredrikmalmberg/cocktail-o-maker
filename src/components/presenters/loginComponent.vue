@@ -58,6 +58,7 @@ export default {
   data() {
     return {
       valid: true,
+      response: "",
       loginError: "",
       emailModel: '',
       emailRules: [
@@ -81,12 +82,13 @@ export default {
         signInWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
             .then(response => {
               /* eslint-disable */
-              console.log(response)
+              //console.log(response)
+              this.response =response
               //this.userStore.setCurrentUser(response);
               this.$router.push({name: 'userHome'});
             }).catch(error => {
           this.loginError = "User not found"
-          console.log(error)
+          //console.log(error)
         })
 
       }

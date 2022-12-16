@@ -12,9 +12,7 @@
 <script>
 import drinkThumbPresenter from '../presenters/drinkThumbPresenter.vue';
 export default {
-    data() {
-        
-    },
+    
     components:{
       drinkThumbPresenter
     },

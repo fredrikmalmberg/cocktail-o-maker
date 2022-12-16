@@ -39,14 +39,14 @@
         },
         removeIngredientACB(){
           let id = this.ingredientID();
-          console.log("should remove", this.ingredientName)
+          //console.log("should remove", this.ingredientName)
           if (confirm('Are you sure you want to remove ' + this.ingredientName + " from your ingredients?")){
             this.userStore.removeIngredient(id);
           }
         },
         addIngredientACB(){
           let id = this.ingredientID();
-          console.log("should add", this.ingredientName, id)
+          //console.log("should add", this.ingredientName, id)
           this.userStore.addIngredient(id, this.ingredientName);
           
         },

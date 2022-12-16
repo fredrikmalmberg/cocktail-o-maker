@@ -32,16 +32,16 @@ export default {
     };
   },
   data() {
-    console.log("data");
+    //console.log("data");
     return {
       image: "@/assets/takeover.jpg",
     };
   },
   created() {
-    console.log("created");
+    //console.log("created");
   },
   mounted() {
-    console.log("mounted");
+    //console.log("mounted");
   },
 
   computed: {

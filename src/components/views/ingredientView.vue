@@ -15,7 +15,7 @@
 <script>
 import ingredientThumbPresenter from "../presenters/ingredientThumbPresenter.vue";
 export default {
-  data() {},
+  
   components: {
     ingredientThumbPresenter,
   },
