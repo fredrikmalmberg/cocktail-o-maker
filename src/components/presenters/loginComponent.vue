@@ -1,33 +1,44 @@
 <template>
-  <v-container fill-height @keydown.enter.prevent="loginClicked()">
-    <v-row no-gutters>
-      <v-col cols="12" class="title mb-5 text-center">
-        Login
-      </v-col>
-      <v-col cols="12">
+  <v-container fill-height @keydown.enter.prevent="submit()">
+    <v-responsive class="d-flex align-center text-center fill-height">
+      <v-form
+        ref="form"
+        v-model="valid"
+        lazy-validation
+      >
+       
         <v-text-field
-            label="Email"
-            placeholder="Email"
-            outlined hide-details
-            class="mb-2"
-            v-model="emailModel"
+          v-model="emailModel"
+          :rules="emailRules"
+          label="E-mail"
+          required
+          class="mb-2"
+        ></v-text-field>
 
-        ></v-text-field>
-      </v-col>
-      <v-col cols="12">
         <v-text-field
-            label="Password"
-            placeholder="Password"
-            outlined hide-details
-            class="mb-5"
-            type="password"
-            v-model="passwordModel"
+          v-model="passwordModel"
+          :rules="passwordRules"
+          label="password"
+          type="password"
+          required
+          class="mb-2"
         ></v-text-field>
-      </v-col>
-      <v-col cols="12">
-        <v-btn block large depressed color="orange darken--2" dark @click="loginClicked()">Login</v-btn>
-      </v-col>
-    </v-row>
+    
+
+        <v-btn
+          color="orange"
+          class="mt-7"
+          @click="submit"
+          variant="flat"
+          block
+        >
+          Log in
+        </v-btn>
+        <div v-if="loginError" class="mt-3 text-red">
+          {{loginError}}
+        </div>
+      </v-form>
+    </v-responsive>
   </v-container>
 </template>
 
@@ -46,15 +57,27 @@ import {useUserStore} from '../../stores/UserStore';
 export default {
   data() {
     return {
-      emailModel: '',
-      passwordModel: '',
-      displayNameModel: '',
+      valid: true,
+      loginError: "",
+    emailModel: '',
+    emailRules: [
+      v => !!v || 'E-mail is required',
+      v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+    ],
+    passwordModel: '',
+    passwordRules: [
+      v => !!v || 'password is required',
+      v => (v && v.length > 6) || 'password must be longer than 6 characters',
+    ],
+
       userStore: useUserStore()
     }
   },
   methods: {
-    loginClicked() {
-      const auth = getAuth()
+    async submit() {
+      const { valid } = await this.$refs.form.validate()
+      if (valid){
+        const auth = getAuth()
       signInWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
           .then(response => {
             /* eslint-disable */
@@ -62,8 +85,12 @@ export default {
             //this.userStore.setCurrentUser(response);
             this.$router.push({name: 'userHome'});
           }).catch(error => {
+            this.loginError = "User not found"
         console.log(error)
       })
+        
+      }
+      
     },
 
   }

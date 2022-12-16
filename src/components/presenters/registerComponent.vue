@@ -1,62 +1,56 @@
 <template>
-  <v-container fill-height @keydown.enter.prevent="registerClicked()">
-    <v-row no-gutters>
-      <v-col cols="12" class="title mb-5 text-center"> Register</v-col>
-      <v-col cols="12">
+  <v-container fill-height @keydown.enter.prevent="submit()">
+    <v-responsive class="d-flex align-center text-center fill-height">
+      <v-form
+        ref="form"
+        v-model="valid"
+        lazy-validation
+      >
         <v-text-field
-            label="Display name"
-            placeholder="Display name"
-            outlined
-            hide-details
-            class="mb-2"
-            v-model="displayNameModel"
+          v-model="displayNameModel"
+          :counter="10"
+          :rules="displayNameRules"
+          label="Name"
+          class="mb-2"
+          required
         ></v-text-field>
-      </v-col>
-      <v-col cols="12">
-        <v-text-field
-            label="Email"
-            placeholder="Email"
-            outlined
-            hide-details
-            class="mb-2"
-            v-model="emailModel"
-        ></v-text-field>
-      </v-col>
-      <v-col cols="12">
-        <v-text-field
-            label="Password"
-            placeholder="Password"
-            outlined
-            hide-details
-            class="mb-5"
-            type="password"
-            v-model="passwordModel"
-        ></v-text-field>
-      </v-col>
 
+        <v-text-field
+          v-model="emailModel"
+          :rules="emailRules"
+          label="E-mail"
+          required
+          class="mb-2"
+        ></v-text-field>
 
-      <v-col cols="12">
-        <input
-            type="checkbox"
-            v-model="acceptTerms"
-        >
-        I hereby confirm that I am over 18 years old
-        <br>
+        <v-text-field
+          v-model="passwordModel"
+          :rules="passwordRules"
+          label="password"
+          type="password"
+          required
+          class="mb-2"
+        ></v-text-field>
+
+        <v-checkbox
+
+          v-model="acceptTerms"
+          :rules="[v => !!v || 'You have to be over 18 to use our website!']"
+          label="Are you over 18 years?"
+          required
+        ></v-checkbox>
+
         <v-btn
-            block
-            large
-            depressed
-            color="orange darken--2"
-            dark
-            v-if="acceptTerms"
-            @click="registerClicked()"
+          color="orange"
+          class="mt-7"
+          @click="submit"
+          variant="flat"
+          block
         >
-          Register
+          Submit
         </v-btn>
-      </v-col>
-
-
-    </v-row>
+      </v-form>
+    </v-responsive>
   </v-container>
 </template>
 
@@ -74,32 +68,52 @@ import {useUserStore} from '../../stores/UserStore';
 export default {
   data() {
     return {
-      emailModel: "",
-      passwordModel: "",
-      displayNameModel: "",
+      
+      userStore: useUserStore(),
+      valid: true,
       acceptTerms: false,
-      userStore: useUserStore()
+    displayNameModel: '',
+    displayNameRules: [
+      v => !!v || 'Name is required',
+      v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+    ],
+    emailModel: '',
+    emailRules: [
+      v => !!v || 'E-mail is required',
+      v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+    ],
+    passwordModel: '',
+    passwordRules: [
+      v => !!v || 'password is required',
+      v => (v && v.length > 6) || 'password must be longer than 6 characters',
+    ],
     };
   },
   methods: {
     /* eslint-disable */
-    registerClicked() {
-      const auth = getAuth();
-      if (this.acceptTerms) {
-        createUserWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
+    async submit() {
+      const { valid } = await this.$refs.form.validate()
+      if (valid){
+        const auth = getAuth();
+      createUserWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
             .then(() => {
               this.userStore.username = this.displayNameModel
-              this.$router.push({name: "userHome"});
+              this.$router.push({name: "login"});
             })
             .catch((error) => {
               console.log(error);
             });
-      } else {
-        alert("Unfortunately you cannot become a member if you're not over 18.")
+
       }
+      
+      
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-input__details{
+  text-align: left;
+  padding-left: 15px;
+}</style>
