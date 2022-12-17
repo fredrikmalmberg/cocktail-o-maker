@@ -37,6 +37,15 @@
         <div v-if="loginError" class="mt-3 text-red">
           {{ loginError }}
         </div>
+        <div class="text-center mt-4">
+          <v-btn
+              variant="text"
+              @click="$router.push({name: 'register'})"
+              class="non-text-transform"
+          >
+            Register an account
+          </v-btn>
+        </div>
       </v-form>
     </v-responsive>
   </v-container>

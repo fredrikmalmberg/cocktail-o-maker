@@ -3,9 +3,9 @@
   <div class="home-page">
     <h1>Welcome to Cocktail-o-Maker!</h1>
     <p>
-      <br />Here at Cocktail-o-Maker we present you with unique drink recipies.
+      <br />Here at Cocktail-o-Maker we present you with unique drink recipes.
       <br />Since the drinks contain alcohol we only let adults use the
-      recipies. <br /><br />
+      recipes. <br /><br />
       Please log in or register to be a part of our cocktail-o-makers!
     </p>
 
