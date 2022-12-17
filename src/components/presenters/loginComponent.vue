@@ -76,8 +76,8 @@ export default {
       ],
       passwordModel: '',
       passwordRules: [
-        v => !!v || 'password is required',
-        v => (v && v.length > 6) || 'password must be longer than 6 characters',
+        v => !!v || 'Password is required',
+        v => (v && v.length > 6) || 'Password must be longer than 6 characters',
       ],
 
       userStore: useUserStore()
