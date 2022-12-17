@@ -35,8 +35,8 @@
         <v-checkbox
 
             v-model="acceptTerms"
-            :rules="[v => !!v || 'You have to be over 18 to use our website!']"
-            label="Are you over 18 years?"
+            :rules="[v => !!v || 'Unfortunately you cannot become a member if you`re not over 18']"
+            label="I hereby confirm that I am over 18 years old"
             required
         ></v-checkbox>
 
@@ -47,8 +47,17 @@
             variant="flat"
             block
         >
-          Submit
+          Register
         </v-btn>
+        <div class="text-center mt-4">
+          <v-btn
+              variant="text"
+              @click="$router.push({name: 'login'})"
+              class="non-text-transform"
+          >
+            Already have an account? Login here
+          </v-btn>
+        </div>
       </v-form>
     </v-responsive>
   </v-container>
@@ -84,8 +93,8 @@ export default {
       ],
       passwordModel: '',
       passwordRules: [
-        v => !!v || 'password is required',
-        v => (v && v.length > 6) || 'password must be longer than 6 characters',
+        v => !!v || 'Password is required',
+        v => (v && v.length > 6) || 'Password must be longer than 6 characters',
       ],
     };
   },

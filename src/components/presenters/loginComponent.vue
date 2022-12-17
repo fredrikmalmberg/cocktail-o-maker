@@ -37,6 +37,15 @@
         <div v-if="loginError" class="mt-3 text-red">
           {{ loginError }}
         </div>
+        <div class="text-center mt-4">
+          <v-btn
+              variant="text"
+              @click="$router.push({name: 'register'})"
+              class="non-text-transform"
+          >
+            Register an account
+          </v-btn>
+        </div>
       </v-form>
     </v-responsive>
   </v-container>
@@ -67,8 +76,8 @@ export default {
       ],
       passwordModel: '',
       passwordRules: [
-        v => !!v || 'password is required',
-        v => (v && v.length > 6) || 'password must be longer than 6 characters',
+        v => !!v || 'Password is required',
+        v => (v && v.length > 6) || 'Password must be longer than 6 characters',
       ],
 
       userStore: useUserStore()
@@ -83,7 +92,7 @@ export default {
             .then(response => {
               /* eslint-disable */
               //console.log(response)
-              this.response =response
+              this.response = response
               //this.userStore.setCurrentUser(response);
               this.$router.push({name: 'userHome'});
             }).catch(error => {
