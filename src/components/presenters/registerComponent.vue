@@ -47,7 +47,7 @@
             variant="flat"
             block
         >
-          Submit
+          Register
         </v-btn>
         <div class="text-center mt-4">
           <v-btn
@@ -55,7 +55,7 @@
               @click="$router.push({name: 'login'})"
               class="non-text-transform"
           >
-            Already have an account? Login
+            Already have an account? Login here
           </v-btn>
         </div>
       </v-form>
