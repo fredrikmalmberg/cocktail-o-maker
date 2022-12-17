@@ -92,7 +92,7 @@ export default {
             .then(response => {
               /* eslint-disable */
               //console.log(response)
-              this.response =response
+              this.response = response
               //this.userStore.setCurrentUser(response);
               this.$router.push({name: 'userHome'});
             }).catch(error => {

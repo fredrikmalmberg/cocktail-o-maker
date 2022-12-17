@@ -49,6 +49,15 @@
         >
           Submit
         </v-btn>
+        <div class="text-center mt-4">
+          <v-btn
+              variant="text"
+              @click="$router.push({name: 'login'})"
+              class="non-text-transform"
+          >
+            Already have an account? Login
+          </v-btn>
+        </div>
       </v-form>
     </v-responsive>
   </v-container>
