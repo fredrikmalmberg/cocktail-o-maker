@@ -1,7 +1,13 @@
 <template>
   <div v-if="resultPromiseState.data">
-    <v-text-field  label="Search ingredients.." variant="solo"
-            clearable v-model="searchTerm"  />
+    <v-col class="text-right">
+      <v-btn @click="$emit('closeClicked')" icon="mdi-close" color="indigo" size="x-small"></v-btn>
+    </v-col>
+    <v-text-field class="shrink" label="Search ingredients.." variant="solo"
+            clearable v-model="searchTerm"/>
+    
+    
+    
     <span v-for="(i) in allIngredientNames" v-bind:key="i[0]">
       <ingredientSearchPresenter :ingredientName="i[1]" />
     </span>
@@ -12,6 +18,7 @@
 import { getIngredientList } from "../../cocktailDBIntegration";
 import ingredientSearchPresenter from "./ingredientSearchPresenter.vue";
 export default {
+  emits: ['closeClicked'],
   components: {
     ingredientSearchPresenter,
   },

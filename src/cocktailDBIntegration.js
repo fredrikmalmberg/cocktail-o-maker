@@ -42,8 +42,8 @@ function getIngredientList(){
 
 function searchIngredientByName(text){
    const complete_url = BASE_URL + "search.php?i=" + text;
-   const { isFetching, error, data } = useFetch(complete_url).get().json();
-   return { isFetching, error, data };
+   const { isLoading, isFetching, error, data } = useFetch(complete_url).get().json();
+   return { isLoading, isFetching, error, data };
 }
 
 function getCategorieList(){

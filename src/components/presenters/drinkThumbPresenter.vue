@@ -1,9 +1,7 @@
 <template>
-    <div v-if="!resultPromiseState.data">
-      Loading...
-    </div>
+    <promiseNoData :promiseState="resultPromiseState" :heightOfSpinner="100"></promiseNoData>
     <drinkThumb 
-    v-else 
+    v-if="resultPromiseState.data"
     :imgUrl="imgUrl()" 
     :name="nameStr()" 
     :ingredientsInInventory="ingredientsInInventory()"
@@ -19,10 +17,12 @@ import drinkThumb from '../views/drinkThumb.vue'
 import {useUserStore} from '../../stores/UserStore';
 import {getDrinkDetails} from '../../cocktailDBIntegration';
 import { mapActions} from "pinia";
+import promiseNoData from '../../promiseNoData.vue';
 
 export default {
   components: {
     drinkThumb,
+    promiseNoData,
   },
   props: {
     favourite: {required: true},

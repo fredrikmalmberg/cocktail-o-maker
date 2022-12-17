@@ -15,6 +15,7 @@ export const useUserStore = defineStore("userStore", {
     underTwenty: false,
     favourites: [],
     ingredients: [],
+    recommendations: [],
     //username: "hugo",
     //underTwenty: true,
     //favourites: [11410, 11417],

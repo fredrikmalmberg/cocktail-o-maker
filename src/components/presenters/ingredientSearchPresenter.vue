@@ -1,12 +1,11 @@
 <template>
+    <promiseNoData :promiseState="resultPromiseState"></promiseNoData>
     <ingredientThumb v-if="resultPromiseState.data"
     :name="ingredientName" 
     :hasIngredient="hasIngredient()" 
     @addIngredient="addIngredientACB"
-    @removeIngredient="removeIngredientACB">
-    test</ingredientThumb>
+    @removeIngredient="removeIngredientACB"/>
 
-    <div v-else>Loading</div> 
     
     </template>
     
@@ -14,9 +13,12 @@
     import {searchIngredientByName} from '../../cocktailDBIntegration';
     import {useUserStore} from '../../stores/UserStore';
     import ingredientThumb from '../views/ingredientThumb.vue';
+    import promiseNoData from '../../promiseNoData.vue';
+
     export default {
       components: {
         ingredientThumb,
+        promiseNoData,
       },
         props: {
             ingredientName: {required: true},
@@ -35,6 +37,9 @@
       },
       methods: {
         ingredientID() {
+            if (!this.resultPromiseState.data.ingredients){
+              return;
+            }
             return parseInt(this.resultPromiseState.data.ingredients[0].idIngredient);
         },
         removeIngredientACB(){

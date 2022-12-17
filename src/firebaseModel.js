@@ -10,6 +10,7 @@ function updateFirebaseFromModel(database, store, uid) {
       username: store.username,
       underTwenty: store.underTwenty,
       ingredients: store.ingredients,
+      
     });
   } else {
     //console.log("Skipped sending model to firebase");

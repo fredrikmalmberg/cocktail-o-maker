@@ -5,8 +5,10 @@
         :favourites="favourites"
         :ingredientList="ingredientList"
       ></favouritesView>
-      <ingredientView :ingredientList="ingredientList"></ingredientView>
+      <ingredientView :ingredientList="ingredientList" @addIngredientClicked="showIngredientViewACB"></ingredientView>
       <recommendationPresenter />
+      <div v-if="showIngredientPopup" class="blocker noscroll" @click="showIngredientViewACB"></div>
+      <ingredientListPresenter class="ingredientPopUp" v-if="showIngredientPopup" @closeClicked="showIngredientViewACB"/>
   </v-container>
 </template>
 
@@ -17,6 +19,7 @@ import recommendationPresenter from "./recommendationPresenter.vue";
 import ingredientView from "../views/ingredientView.vue";
 import { useUserStore } from "../../stores/UserStore";
 import favouritesView from "../views/favouritesView.vue";
+import ingredientListPresenter from "./ingredientListPresenter.vue";
 
 export default {
   components: {
@@ -24,6 +27,7 @@ export default {
     ingredientView,
     recommendationPresenter,
     favouritesView,
+    ingredientListPresenter,
   },
   setup() {
     const userStore = useUserStore();
@@ -34,7 +38,7 @@ export default {
   data() {
     //console.log("data");
     return {
-      image: "@/assets/takeover.jpg",
+      showIngredientPopup: false,
     };
   },
   created() {
@@ -56,6 +60,36 @@ export default {
       return this.userStore.username;
     },
   },
+  methods: {
+    showIngredientViewACB(){
+      this.showIngredientPopup =!this.showIngredientPopup;
+    }
+  }
 };
 </script>
-
+<style scoped>
+.ingredientPopUp{
+  position: absolute;
+    top: 15px;
+    background-color: white;
+    z-index: 1200;
+    display: block;
+    margin: 30px;
+    padding: 10px;
+    left: 0px;
+    border: 1px black;
+    box-shadow: 1px 1px 20px;
+    border-radius: 8px;
+}
+.blocker{
+  position: fixed;
+  
+    top: 0px;
+    left: 0px;
+    z-index: 1199;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.6);
+    overflow: hidden;
+}
+</style>

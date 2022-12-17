@@ -5,17 +5,19 @@
   <span v-for="i in ingredientList" v-bind:key="i">
     <ingredientThumbPresenter :ingredient="i['id']" />
   </span>
-  <router-link to="/ingredients" style="text-decoration: none; color: inherit">
-    <v-btn class="mx-2" fab dark rounded color="indigo">
+    
+  <v-btn v-if="ingredientList[0]" class="mx-2" fab dark rounded color="indigo" @click.stop="$emit('addIngredientClicked')">
+      <v-icon dark> mdi-plus </v-icon>
+    </v-btn>
+    <v-btn v-else class="mx-2" fab dark rounded color="red" @click.stop="$emit('addIngredientClicked')">
       <v-icon dark> mdi-plus </v-icon> Add Ingredients
     </v-btn>
-  </router-link>
 </template>
 
 <script>
 import ingredientThumbPresenter from "../presenters/ingredientThumbPresenter.vue";
 export default {
-  
+  emits:['addIngredientClicked'],
   components: {
     ingredientThumbPresenter,
   },
@@ -25,4 +27,5 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

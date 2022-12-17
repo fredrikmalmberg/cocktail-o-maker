@@ -9,7 +9,7 @@ import {
 } from "./firebaseModel";
 import { useUserStore } from "./stores/UserStore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { app } from "./plugins/firebase";
+import  app  from "./plugins/firebase";
 import { getDatabase } from "firebase/database";
 export default {
   name: "VueRoot",

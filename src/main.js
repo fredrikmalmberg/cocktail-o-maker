@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 import { createApp } from "vue";
 //import App from "./App.vue";
 import VueRoot from "./VueRoot.vue"
@@ -6,11 +6,8 @@ import { createPinia } from "pinia";
 import vuetify from "./plugins/vuetify";
 import { loadFonts } from "./plugins/webfontloader";
 //import {database} from './plugins/firebase';
-import {app} from './plugins/firebase';
 //import { useUserStore } from "./stores/UserStore";
-import { getDatabase} from "firebase/database";
 //import { updateFirebaseFromModel, updateModelFromFirebase } from "./firebaseModel";
-const database = getDatabase(app);
 loadFonts();
 
 
