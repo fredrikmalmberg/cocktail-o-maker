@@ -6,22 +6,23 @@
           v-bind:valid="valid"
           lazy-validation
       >
-
         <v-text-field
-            v-bind:emailModel="emailModel"
+            v-bind:value="emailModel"
             :rules="emailRules"
             label="E-mail"
             required
             class="mb-2"
+            @input="$emit('update:emailModel', $event.target.value)"
         ></v-text-field>
 
         <v-text-field
-            v-bind:passwordModel="passwordModel"
+            v-bind:value="passwordModel"
             :rules="passwordRules"
             label="password"
             type="password"
             required
             class="mb-2"
+            @input="$emit('update:passwordModel', $event.target.value)"
         ></v-text-field>
 
 

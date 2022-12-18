@@ -6,7 +6,7 @@ import userComponent from "../components/presenters/userPresenter.vue";
 import ingredientsComponent from "../components/presenters/ingredientListPresenter.vue";
 import registerComponent from "../components/presenters/registerComponent.vue";
 import logoutPresenter from "../components/presenters/logoutPresenter";
-import loginPresenter from "@/components/presenters/loginPresenter";
+import loginComponent from "@/components/presenters/loginPresenter";
 
 const routes = [
   {
@@ -43,7 +43,7 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    component: loginPresenter,
+    component: loginComponent,
   },
   {
     path: "/logout",

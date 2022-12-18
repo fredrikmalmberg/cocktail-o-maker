@@ -11,6 +11,7 @@
   />
 </template>
 
+
 <script>
 import {
   getAuth,
@@ -20,7 +21,7 @@ import {useUserStore} from '@/stores/UserStore';
 import loginView from "@/components/views/loginView";
 
 export default {
-  components: loginView,
+  components: {loginView},
   data() {
     return {
       valid: true,
