@@ -1,13 +1,13 @@
 <template>
   <loginView
-      v-bind:valid="valid"
-      v-bind:response="response"
-      v-bind:loginError="loginError"
-      v-bind:emailModel="emailModel"
-      v-bind:emailRules="emailRules"
-      v-bind:passwordModel="passwordModel"
-      v-bind:passwordRules="passwordRules"
-      v-bind:submit="submit"
+      :valid="valid"
+      :response="response"
+      :loginError="loginError"
+      :emailModel="emailModel"
+      :emailRules="emailRules"
+      :passwordModel="passwordModel"
+      :passwordRules="passwordRules"
+      :submit="submit"
   />
 </template>
 
@@ -42,8 +42,8 @@ export default {
   },
   methods: {
     async submit() {
-      const {valid} = await this.$refs.form.validate()
-      if (valid) {
+      const validationResult = await this.$refs.form.validate()
+      if (validationResult.valid) {
         const auth = getAuth()
         signInWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
             .then(response => {

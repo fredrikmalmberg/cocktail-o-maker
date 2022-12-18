@@ -6,23 +6,22 @@
           v-bind:valid="valid"
           lazy-validation
       >
+
         <v-text-field
-            v-bind:value="emailModel"
+            v-model="emailModel"
             :rules="emailRules"
             label="E-mail"
             required
             class="mb-2"
-            @input="$emit('update:emailModel', $event.target.value)"
         ></v-text-field>
 
         <v-text-field
-            v-bind:value="passwordModel"
+            v-model="passwordModel"
             :rules="passwordRules"
             label="password"
             type="password"
             required
             class="mb-2"
-            @input="$emit('update:passwordModel', $event.target.value)"
         ></v-text-field>
 
 
@@ -55,37 +54,30 @@
 
 <script>
 export default {
+
   props: {
     valid: {
-      type: Boolean,
       required: true,
     },
     response: {
-      type: String,
       required: false,
     },
     loginError: {
-      type: String,
       required: false,
     },
     emailModel: {
-      type: String,
       required: true,
     },
     emailRules: {
-      type: Array,
       required: true,
     },
     passwordModel: {
-      type: String,
       required: true,
     },
     passwordRules: {
-      type: Array,
       required: true,
     },
     submit: {
-      type: Function,
       required: true,
     },
   },
