@@ -3,6 +3,8 @@
       <v-col class="mt-2" cols="12">
         <h2>Recommended drinks based on your ingredients</h2>
       </v-col>
+      {{ingredientList}}
+      {{recommendationList}}
       <div class="searchResult" v-for="f in recommendationList" v-bind:key="f">
         <drinkThumbPresenter :favourite="f" :ingredientList="ingredientList" />
       </div>

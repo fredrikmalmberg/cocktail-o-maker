@@ -6,7 +6,7 @@
         :ingredientList="ingredientList"
       ></favouritesView>
       <ingredientView :ingredientList="ingredientList" @addIngredientClicked="showIngredientViewACB"></ingredientView>
-      <recommendationPresenter />
+      <recommendationPresenter v-if="ingredientList[0]" :ingredientList="ingredientList"/>
       <div v-if="showIngredientPopup" class="blocker noscroll" @click="showIngredientViewACB"></div>
       <ingredientListPresenter class="ingredientPopUp" v-if="showIngredientPopup" @closeClicked="showIngredientViewACB"/>
   </v-container>
