@@ -28,6 +28,7 @@ export default {
     ingredients: { required: true },
     instructions: { required: true },
     name: { required: true },
+    ingredientList: { required: true },
   },
   components: {
     drinkThumbPresenter

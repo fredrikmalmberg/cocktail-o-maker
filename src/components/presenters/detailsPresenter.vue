@@ -13,9 +13,7 @@ export default {
     }
   },
   mounted(){
-    console.log(this.$route.params.id)
     this.resultPromiseState = getDrinkDetails(parseInt(this.$route.params.id));
-    console.log(this.resultPromiseState)
   },
   computed: {
     ingredientList() {
@@ -36,7 +34,6 @@ export default {
         if (this.resultPromiseState.data.drinks[0]['strIngredient'+i] !==null){
       arr = [...arr, [this.resultPromiseState.data.drinks[0]['strIngredient'+i], this.resultPromiseState.data.drinks[0]['strMeasure'+i]]] }
       }
-      console.log(arr)
       return arr
     }
   },
