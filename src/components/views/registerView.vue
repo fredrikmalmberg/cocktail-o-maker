@@ -29,7 +29,7 @@
         ></v-text-field>
 
         <v-checkbox
-            @update:model-value="updateClicked"
+            @input="updateClicked"
             :rules="[
             v => !!v ||
               'Unfortunately you cannot become a member if you`re not over 18'
@@ -83,8 +83,8 @@ export default {
     updatePassword(password) {
       this.$emit("passwordChanged", password);
     },
-    updateClicked(accept) {
-      this.$emit("acceptChanged", accept);
+    updateClicked(event) {
+      this.$emit("acceptTermsChanged", event.target.checked);
     },
     submit() {
       this.$emit("submit");

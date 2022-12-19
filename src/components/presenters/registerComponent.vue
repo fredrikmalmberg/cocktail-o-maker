@@ -11,7 +11,7 @@
       @displayNameChanged="updateDisplayNameModel"
       @emailChanged="updateEmailModel"
       @passwordChanged="updatePasswordModel"
-      @updateClicked="updateAccept"
+      @acceptTermsChanged="updateAccept"
   />
 </template>
 
