@@ -23,20 +23,21 @@ export default {
       <v-card-title>{{ name }}</v-card-title>
       <v-img width="200" height="200" :src="imgUrl" :lazy-src="lazyImg"></v-img>
       <v-card-actions>
-        <v-btn
+        <v-btn variant="flat"
           v-if="isFavourite"
           class="mx-2"
           icon="mdi-heart"
           color="red"
+          size="small"
           @click.stop="$emit('removeFavourite')"
         >
           <v-icon dark> mdi-heart </v-icon>
         </v-btn>
-        <v-btn
+        <v-btn variant="flat"
           v-else
-          class="mx-2"
+          class="mx-2 fadeHeart"
           icon="mdi-heart"
-          color="secondary"
+          size="small"
           @click.stop="$emit('addFavourite')"
         >
           <v-icon dark> mdi-heart </v-icon>
@@ -50,6 +51,9 @@ export default {
 
 <style scoped>
 .card {
-  background-color: #fafafa;
+  background-color: #f2f2f2;
+}
+.fadeHeart{
+  color:"rgb(100,100,100)";
 }
 </style>
