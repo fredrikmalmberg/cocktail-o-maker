@@ -1,14 +1,12 @@
-
-import { createRouter, createWebHistory } from 'vue-router'
-import search from '../components/presenters/searchPresenter.vue'
-import HomeView from '../components/presenters/HomePagePresenter.vue'
-import detailsPresenter from '../components/presenters/detailsPresenter.vue'
-import userComponent from '../components/presenters/userPresenter.vue'
-import ingredientsComponent from '../components/presenters/ingredientListPresenter.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import search from "../components/presenters/searchPresenter.vue";
+import HomeView from "../components/presenters/HomePagePresenter.vue";
+import detailsAPITest from "../components/presenters/detailsAPIPresenter.vue";
+import userComponent from "../components/presenters/userPresenter.vue";
+import ingredientsComponent from "../components/presenters/ingredientListPresenter.vue";
 import registerComponent from "../components/presenters/registerPresenter.vue";
+import logoutPresenter from "../components/presenters/logoutPresenter";
 import loginComponent from "@/components/presenters/loginPresenter";
-import logoutPresenter from '../components/presenters/logoutPresenter'
-
 
 const routes = [
   {
@@ -17,13 +15,11 @@ const routes = [
     component: HomeView,
   },
 
-
-  { 
-    path: '/drinkdetails/:id', 
-    name: 'drinkDetails', 
-    component: detailsPresenter 
+  {
+    path: "/drinkdetails/:id",
+    name: "drinkDetails",
+    component: detailsAPITest,
   },
-
   {
     path: "/user/",
     name: "userHome",

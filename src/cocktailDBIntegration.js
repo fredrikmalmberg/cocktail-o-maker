@@ -36,7 +36,6 @@ async function getIngredientList(){
    const complete_url = BASE_URL + "list.php?i=list"
    const { isFetching, error, data } = await useFetch(complete_url).get().json();
    return { isFetching, error, data };
-
 }
 
 
