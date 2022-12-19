@@ -1,4 +1,19 @@
 import { onValue, ref, set } from "firebase/database";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+
+function signIn(email, password) {
+  const auth = getAuth();
+  return signInWithEmailAndPassword(auth, email, password);
+}
+
+function createUser(email, password) {
+  const auth = getAuth();
+  return createUserWithEmailAndPassword(auth, email, password);
+}
 
 function updateFirebaseFromModel(database, store, uid) {
   //console.log("Running updateFirebaseFromModel");
@@ -10,7 +25,6 @@ function updateFirebaseFromModel(database, store, uid) {
       username: store.username,
       underTwenty: store.underTwenty,
       ingredients: store.ingredients,
-      
     });
   } else {
     //console.log("Skipped sending model to firebase");
@@ -46,5 +60,4 @@ function updateModelFromFirebase(database, store) {
   return;
 }
 
-
-export { updateFirebaseFromModel, updateModelFromFirebase };
+export { updateFirebaseFromModel, updateModelFromFirebase, signIn, createUser };
