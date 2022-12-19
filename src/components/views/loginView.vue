@@ -8,7 +8,8 @@
       >
 
         <v-text-field
-            v-model="emailModel"
+            @update:model-value="updateEmail"
+            :model-value="emailModel"
             :rules="emailRules"
             label="E-mail"
             required
@@ -16,8 +17,8 @@
         ></v-text-field>
 
         <v-text-field
-            v-model="passwordModel"
-            :rules="passwordRules"
+            @update:model-value="updatePassword"
+            :model-value="passwordModel"
             label="password"
             type="password"
             required
@@ -81,6 +82,15 @@ export default {
       required: true,
     },
   },
+  methods: {
+    updateEmail(email) {
+      this.$emit("emailChanged", email);
+    },
+    updatePassword(password) {
+      this.$emit("passwordChanged", password);
+    },
+  }
+  ,
 }
 </script>
 

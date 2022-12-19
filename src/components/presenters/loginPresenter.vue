@@ -8,6 +8,8 @@
       :passwordModel="passwordModel"
       :passwordRules="passwordRules"
       :submit="submit"
+      @emailChanged="updateEmailModel"
+      @passwordChanged="updatePasswordModel"
   />
 </template>
 
@@ -55,7 +57,14 @@ export default {
         })
       }
     },
-  }
+    updateEmailModel(email) {
+      this.emailModel = email;
+    },
+    updatePasswordModel(password) {
+      this.passwordModel = password;
+    }
+
+  },
 }
 
 
