@@ -1,45 +1,31 @@
 <template>
-  <v-main>
-
-    <div v-if="detailsDrink">
-      <div v-if="detailsDrink.error">
-        {{ detailsDrink.error }}
-      </div>
-      <div v-if="detailsDrink.post">
-        <div>
-          <div class="detailsDrink" v-for="element in detailsDrink.post.drinks" :key="element.idDrink">
-            <v-card
-                elevation="2">
-              <v-img
-                  height="250"
-                  v-bind:src="element.strDrinkThumb"
-                  style="text-align:center;"
-              ></v-img>
-              <v-card-title>{{ element.strDrink }}</v-card-title>
-              <v-rating
-                  :value="4.5"
-                  color="amber"
-                  dense
-                  half-increments
-                  readonly
-                  size="14"
-              ></v-rating>
-            </v-card>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </v-main>
-</template>
+  
+  
+ 
+  <drinkThumbPresenter 
+  :favourite="this.$props.drinkData.drinks[0].idDrink"
+  :ingredientList="ingredientList"
+  ></drinkThumbPresenter>
+  <h3>Instructions </h3>{{this.$props.instructions}}
+  <h3>Ingredients </h3>
+  <div v-for="item in this.$props.ingredients" v-bind:key="item">
+  {{ item }}</div>
+  </template>
 
 <script>
-
+import drinkThumbPresenter from '../presenters/drinkThumbPresenter.vue';
 export default {
-  setup() {
+  props: {
+    drinkData: { required: true },
+    ingredients: { required: true },
+    instructions: { required: true },
+    name: { required: true },
   },
-  props: ['detailsDrink'],
-  data: () => ({}),
+  components: {
+    drinkThumbPresenter
+  }
+
+ 
 
 }
 </script>
