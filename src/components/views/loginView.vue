@@ -1,5 +1,5 @@
 <template>
-  <v-container fill-height @keydown.enter.prevent="submit()">
+  <v-container fill-height @keydown.enter.prevent="submitForm">
     <v-responsive class="d-flex align-center text-center fill-height">
       <v-form
           ref="form"
@@ -88,6 +88,9 @@ export default {
     },
     updatePassword(password) {
       this.$emit("passwordChanged", password);
+    },
+    submitForm() {
+      this.$emit("submit");
     },
   }
   ,

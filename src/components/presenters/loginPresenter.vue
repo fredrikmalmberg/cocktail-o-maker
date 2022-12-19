@@ -7,9 +7,9 @@
       :emailRules="emailRules"
       :passwordModel="passwordModel"
       :passwordRules="passwordRules"
-      :submit="submit"
       @emailChanged="updateEmailModel"
       @passwordChanged="updatePasswordModel"
+      @submitForm="submit"
   />
 </template>
 

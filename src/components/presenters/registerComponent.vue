@@ -1,128 +1,82 @@
 <template>
-  <v-container fill-height @keydown.enter.prevent="submit()">
-    <v-responsive class="d-flex align-center text-center fill-height">
-      <v-form
-          ref="form"
-          v-model="valid"
-          lazy-validation
-      >
-        <v-text-field
-            v-model="displayNameModel"
-            :counter="10"
-            :rules="displayNameRules"
-            label="Name"
-            class="mb-2"
-            required
-        ></v-text-field>
-
-        <v-text-field
-            v-model="emailModel"
-            :rules="emailRules"
-            label="E-mail"
-            required
-            class="mb-2"
-        ></v-text-field>
-
-        <v-text-field
-            v-model="passwordModel"
-            :rules="passwordRules"
-            label="password"
-            type="password"
-            required
-            class="mb-2"
-        ></v-text-field>
-
-        <v-checkbox
-
-            v-model="acceptTerms"
-            :rules="[v => !!v || 'Unfortunately you cannot become a member if you`re not over 18']"
-            label="I hereby confirm that I am over 18 years old"
-            required
-        ></v-checkbox>
-
-        <v-btn
-            color="orange"
-            class="mt-7"
-            @click="submit"
-            variant="flat"
-            block
-        >
-          Register
-        </v-btn>
-        <div class="text-center mt-4">
-          <v-btn
-              variant="text"
-              @click="$router.push({name: 'login'})"
-              class="non-text-transform"
-          >
-            Already have an account? Login here
-          </v-btn>
-        </div>
-      </v-form>
-    </v-responsive>
-  </v-container>
+  <registerView
+      :valid="valid"
+      :acceptTerms="acceptTerms"
+      :displayNameModel="displayNameModel"
+      :displayNameRules="displayNameRules"
+      :emailModel="emailModel"
+      :emailRules="emailRules"
+      :passwordModel="passwordModel"
+      :passwordRules="passwordRules"
+      @displayNameChanged="updateDisplayNameModel"
+      @emailChanged="updateEmailModel"
+      @passwordChanged="updatePasswordModel"
+      @updateClicked="updateAccept"
+  />
 </template>
 
 <script>
 import {
   getAuth,
-  //signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  //updateProfile,
-  //onAuthStateChanged,
-  //signOut,
 } from "firebase/auth";
-import {useUserStore} from '../../stores/UserStore';
+import { useUserStore } from "@/stores/UserStore";
+import registerView from "@/components/views/registerView";
 
 export default {
+  components: { registerView },
   data() {
     return {
-
       userStore: useUserStore(),
       valid: true,
       acceptTerms: false,
-      displayNameModel: '',
+      displayNameModel: "",
       displayNameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+        (v) => !!v || "Name is required",
+        (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
       ],
-      emailModel: '',
+      emailModel: "",
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
       ],
-      passwordModel: '',
+      passwordModel: "",
       passwordRules: [
-        v => !!v || 'Password is required',
-        v => (v && v.length > 6) || 'Password must be longer than 6 characters',
+        (v) => !!v || "Password is required",
+        (v) => (v && v.length > 6) || "Password must be longer than 6 characters",
       ],
     };
   },
   methods: {
-    /* eslint-disable */
     async submit() {
-      const {valid} = await this.$refs.form.validate()
+      const { valid } = await this.$refs.form.validate();
       if (valid) {
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
             .then(() => {
-              this.userStore.username = this.displayNameModel
-              this.$router.push({name: "login"});
+              this.userStore.username = this.displayNameModel;
+              this.$router.push({ name: "login" });
             })
             .catch((error) => {
               console.log(error);
             });
-
       }
-
-
     },
+    updateDisplayNameModel(displayName) {
+      this.displayNameModel = displayName;
+    },
+    updateEmailModel(email) {
+      this.emailModel = email;
+    },
+    updatePasswordModel(password) {
+      this.passwordModel = password;
+    },
+    updateAccept(accept){
+      this.acceptTerms=accept
+    }
   },
 };
 </script>
 
-<style scoped>
-.v-input__details {
-  text-align: left;
-  padding-left: 15px;
-}</style>
+
+
