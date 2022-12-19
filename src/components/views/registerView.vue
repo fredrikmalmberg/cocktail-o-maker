@@ -30,6 +30,7 @@
         ></v-text-field>
 
         <v-checkbox
+            :model-value="acceptTerms"
             @input="updateClicked"
             :rules="[
             v => !!v ||

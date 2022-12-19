@@ -22,16 +22,16 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import { useUserStore } from "@/stores/UserStore";
+import {useUserStore} from "@/stores/UserStore";
 import registerView from "@/components/views/registerView";
 
 export default {
-  components: { registerView },
+  components: {registerView},
   data() {
     return {
       userStore: useUserStore(),
       valid: true,
-      acceptTerms: false,
+      acceptTerms: true,
       displayNameModel: "",
       displayNameRules: [
         (v) => !!v || "Name is required",
@@ -56,7 +56,7 @@ export default {
         createUserWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
             .then(() => {
               this.userStore.username = this.displayNameModel;
-              this.$router.push({ name: "login" });
+              this.$router.push({name: "login"});
             })
             .catch((error) => {
               console.log(error);
@@ -72,11 +72,11 @@ export default {
     updatePasswordModel(password) {
       this.passwordModel = password;
     },
-    updateAccept(accept){
-      this.acceptTerms=accept
+    updateAccept(accept) {
+      this.acceptTerms = accept
     },
-    updateValid(valid){
-      this.valid=valid;
+    updateValid(valid) {
+      this.valid = valid;
     }
   },
 };
