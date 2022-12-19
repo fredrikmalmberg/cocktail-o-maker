@@ -23,7 +23,22 @@ export default {
     },
   },
   methods: {
-  
+    nameStr(){
+      return this.resultPromiseState.data.drinks[0].strDrink
+    },
+    instructions(){
+      return this.resultPromiseState.data.drinks[0].strInstructions
+    },
+    ingredientsForDrink(){
+      let arr = []
+      for (let i = 1; i < 16; i++){
+        
+        if (this.resultPromiseState.data.drinks[0]['strIngredient'+i] !==null){
+      arr = [...arr, this.resultPromiseState.data.drinks[0]['strIngredient'+i]]}
+      }
+      console.log(arr)
+      return arr
+    }
   },
   
 }
@@ -32,6 +47,11 @@ export default {
 
 
 <template>
-  asdsa
-      <detailsView :drinkData="resultPromiseState.data" :ingredientList="ingredientList" />
+
+      <detailsView v-if="resultPromiseState.data" 
+      :name="nameStr()"  
+      :instructions="instructions()"
+      :ingredients="ingredientsForDrink()"
+      :drinkData="resultPromiseState.data" 
+      :ingredientList="ingredientList" />
 </template>
