@@ -1,9 +1,18 @@
 import { onValue, ref, set } from "firebase/database";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 
 function signIn(email, password) {
   const auth = getAuth();
   return signInWithEmailAndPassword(auth, email, password);
+}
+
+function createUser(email, password) {
+  const auth = getAuth();
+  return createUserWithEmailAndPassword(auth, email, password);
 }
 
 function updateFirebaseFromModel(database, store, uid) {
@@ -51,4 +60,4 @@ function updateModelFromFirebase(database, store) {
   return;
 }
 
-export { updateFirebaseFromModel, updateModelFromFirebase, signIn };
+export { updateFirebaseFromModel, updateModelFromFirebase, signIn, createUser };

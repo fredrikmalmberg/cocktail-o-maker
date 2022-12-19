@@ -18,12 +18,10 @@
 </template>
 
 <script>
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
+
 import {useUserStore} from "@/stores/UserStore";
 import registerView from "@/components/views/registerView";
+import {createUser} from "@/firebaseModel";
 
 export default {
   components: {registerView},
@@ -52,12 +50,10 @@ export default {
   methods: {
     async submit() {
       if (this.valid) {
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
-            .then(() => {
-              this.userStore.username = this.displayNameModel;
-              this.$router.push({name: "login"});
-            })
+        createUser(this.emailModel, this.passwordModel).then(() => {
+          this.userStore.username = this.displayNameModel;
+          this.$router.push({name: "login"});
+        })
             .catch((error) => {
               console.log(error);
             });
