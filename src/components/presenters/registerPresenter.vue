@@ -52,7 +52,7 @@ export default {
       if (this.valid) {
         createUser(this.emailModel, this.passwordModel).then(() => {
           this.userStore.username = this.displayNameModel;
-          this.$router.push({name: "login"});
+          this.$router.push({name: "main page"});
         })
             .catch((error) => {
               console.log(error);
