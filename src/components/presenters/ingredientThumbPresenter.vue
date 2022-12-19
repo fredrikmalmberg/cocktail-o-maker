@@ -4,13 +4,13 @@
     :hasIngredient="hasIngredient()" 
     @addIngredient="addIngredientACB"
     @removeIngredient="removeIngredientACB"/>
-    <div v-else>Loading</div>  
 </template>
 
 <script>
 import ingredientThumb from '../views/ingredientThumb.vue';
 import {useUserStore} from '../../stores/UserStore';
 import {getIngredientDetails} from '../../cocktailDBIntegration';
+
 
 export default {
   components: {

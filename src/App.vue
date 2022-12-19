@@ -2,7 +2,8 @@
   <v-app>
     <v-main>
       <TopBar :user="userStore"/>
-      <router-view/>
+      <v-container><router-view/></v-container>
+      
     </v-main>
   </v-app>
 </template>
