@@ -1,7 +1,8 @@
 <template>
   <ingredientListView
-    v-if="resultPromiseState.data"
-    :allIngredientNames="allIngredientNames"
+    v-if="allIngredientNames[0]"
+    :allIngredientNames="filteredIngredientNames"
+    :filterIngredientEvent="filterIngredientNamesACB"
     @closeClicked="showIngredientViewACB"
   >
   </ingredientListView>
@@ -16,11 +17,12 @@ export default {
     ingredientListView,
   },
   mounted() {
-    this.resultPromiseState = getIngredientList();
+    
   },
   data() {
     return {
-      searchTerm: "",
+      allIngredientNames: [],
+      filteredIngredientNames: [],
       resultPromiseState: { data: null, error: null },
     };
   },
@@ -29,20 +31,46 @@ export default {
     showIngredientViewACB() {
       this.$emit("closeClicked");
     },
-  },
-  computed: {
-    allIngredientNames() {
+    filterIngredientNamesACB(searchTerm){
+      let arr = []
+      for (let n = 0; n < this.allIngredientNames.length; n++) {
+      if (!searchTerm || searchTerm === "") {
+          this.filteredIngredientNames = this.allIngredientNames  
+          return
+          } else {
+            if (
+              this.allIngredientNames[n][1]
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+            ) {
+              arr = [
+              ...arr,
+              [n,this.allIngredientNames[n][1]],
+            ];
+            }
+          }
+        }
+      this.filteredIngredientNames = arr;
+    },
+    getAllIngredientNames(promise) {
       let arr = [];
-      if (this.resultPromiseState.data) {
-        for (let n = 0; n < this.resultPromiseState.data.drinks.length; n++) {
+      if (promise.data){
+        let ingrList = promise.data.value.drinks
+        for (let n = 0; n < ingrList.length; n++) {
+          //console.log(n)
             arr = [
               ...arr,
-              [n, this.resultPromiseState.data.drinks[n].strIngredient1],
+              [n, ingrList[n].strIngredient1],
             ];
         }
       }
-      return arr;
+      this.allIngredientNames = arr;
+      this.filteredIngredientNames = arr;
     },
   },
+  created() {
+    getIngredientList().then(this.getAllIngredientNames);
+  },
+  
 };
 </script>

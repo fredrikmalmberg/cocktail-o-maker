@@ -10,7 +10,7 @@
       ></v-btn>
     </v-col>
     <v-text-field
-      @input="(event) => updateSearchString(event.target.value)"
+      @input="(event) => filterIngredientEvent(event.target.value)"
       @click:clear="(event) => clearSearchString()"
       class="shrink"
       label="Search ingredients.."
@@ -19,7 +19,6 @@
     />
     <span v-for="i in allIngredientNames" v-bind:key="i[0]">
       <ingredientSearchPresenter
-        v-if="i[1].toLowerCase().includes(this.searchstring.toLowerCase())"
         :ingredientName="i[1]"
       />
     </span>
@@ -35,16 +34,14 @@ export default {
   },
   props: {
     allIngredientNames: { required: true },
-  },
-  data() {
-    return { searchstring: "" };
+    filterIngredientEvent: { required: true },
   },
   methods: {
-    updateSearchString(value) {
-      this.searchstring = value;
+    updateSearchStringACB(value) {
+      this.filterIngredientEvent(value);
     },
     clearSearchString() {
-      this.searchstring = "";
+      this.filterIngredientEvent("");
     },
   },
 };
@@ -62,6 +59,7 @@ export default {
   border: 1px black;
   box-shadow: 1px 1px 20px;
   border-radius: 8px;
+  min-width: 90%;
 }
 .blocker {
   position: fixed;

@@ -32,10 +32,11 @@ function searchDrinkFirstLetter(id){
    return { isFetching, error, data };
 }
 
-function getIngredientList(){
+async function getIngredientList(){
    const complete_url = BASE_URL + "list.php?i=list"
-   const { isFetching, error, data } = useFetch(complete_url).get().json();
+   const { isFetching, error, data } = await useFetch(complete_url).get().json();
    return { isFetching, error, data };
+   //return useFetch(complete_url).get();
 }
 
 
