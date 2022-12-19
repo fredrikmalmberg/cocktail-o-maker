@@ -22,8 +22,9 @@ function getIngredientDetails(id){
 
 function searchByIngredient(name){
    const complete_url = BASE_URL + "filter.php?i=" + name
-   const { isFetching, error, data } = useFetch(complete_url).get().json();
-   return { isFetching, error, data };
+   //const { isFetching, error, data } = useFetch(complete_url).get().json();
+   //return { isFetching, error, data };
+   return useFetch(complete_url).get().json();
 }
 
 function searchDrinkFirstLetter(id){
