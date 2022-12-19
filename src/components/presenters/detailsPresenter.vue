@@ -34,7 +34,7 @@ export default {
       for (let i = 1; i < 16; i++){
         
         if (this.resultPromiseState.data.drinks[0]['strIngredient'+i] !==null){
-      arr = [...arr, this.resultPromiseState.data.drinks[0]['strIngredient'+i]]}
+      arr = [...arr, [this.resultPromiseState.data.drinks[0]['strIngredient'+i], this.resultPromiseState.data.drinks[0]['strMeasure'+i]]] }
       }
       console.log(arr)
       return arr
