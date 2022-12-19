@@ -1,5 +1,5 @@
 <script>
-
+import lazyImg from "@/assets/lazyLoad.png";
 
 export default {
   props: {
@@ -9,6 +9,11 @@ export default {
     ingredientsInInventory: {required: true},
     totalIngredients: {required: true},
   },
+  computed: {
+        lazyImg() {
+            return lazyImg;
+        },
+      },
 }
 
 </script>
@@ -22,7 +27,8 @@ export default {
          @click="$emit('drinkClicked')">
         <v-card-title>{{ name }}</v-card-title> 
         <v-img
-          v-bind:src=imgUrl
+          :src=imgUrl
+          :lazy-src=lazyImg
       ></v-img>
       <v-card-actions>
         
