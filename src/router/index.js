@@ -4,7 +4,7 @@ import HomeView from "../components/presenters/HomePagePresenter.vue";
 import detailsAPITest from "../components/presenters/detailsAPIPresenter.vue";
 import userComponent from "../components/presenters/userPresenter.vue";
 import ingredientsComponent from "../components/presenters/ingredientListPresenter.vue";
-import registerComponent from "../components/presenters/registerComponent.vue";
+import registerComponent from "../components/presenters/registerPresenter.vue";
 import logoutPresenter from "../components/presenters/logoutPresenter";
 import loginComponent from "@/components/presenters/loginPresenter";
 

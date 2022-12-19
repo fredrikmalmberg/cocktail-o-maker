@@ -24,7 +24,6 @@
             class="mb-2"
         ></v-text-field>
 
-
         <v-btn
             color="orange"
             class="mt-7"
@@ -88,7 +87,7 @@ export default {
     submitForm() {
       this.$emit("submitForm");
     },
-    changeValid(valid){
+    changeValid(valid) {
       this.$emit("validChanged", valid)
     }
 

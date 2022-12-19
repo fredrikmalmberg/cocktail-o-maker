@@ -12,6 +12,8 @@
       @emailChanged="updateEmailModel"
       @passwordChanged="updatePasswordModel"
       @acceptTermsChanged="updateAccept"
+      @validChanged="updateValid"
+      @submitForm="submit"
   />
 </template>
 
@@ -49,8 +51,7 @@ export default {
   },
   methods: {
     async submit() {
-      const { valid } = await this.$refs.form.validate();
-      if (valid) {
+      if (this.valid) {
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
             .then(() => {
@@ -73,6 +74,9 @@ export default {
     },
     updateAccept(accept){
       this.acceptTerms=accept
+    },
+    updateValid(valid){
+      this.valid=valid;
     }
   },
 };

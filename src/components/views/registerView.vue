@@ -1,7 +1,8 @@
 <template>
-  <v-container fill-height @keydown.enter.prevent="submit()">
+  <v-container fill-height @keydown.enter.prevent="submitForm">
     <v-responsive class="d-flex align-center text-center fill-height">
-      <v-form ref="form" v-bind:valid="valid" lazy-validation>
+      <v-form @update:modelValue="changeValid"
+              lazy-validation>
         <v-text-field
             @update:model-value="updateDisplayName"
             :counter="10"
@@ -41,7 +42,7 @@
         <v-btn
             color="orange"
             class="mt-7"
-            @click="submit"
+            @click="submitForm"
             variant="flat"
             block
         >
@@ -64,14 +65,34 @@
 <script>
 export default {
   props: {
-    valid: Boolean,
-    acceptTerms: Boolean,
-    displayNameModel: String,
-    displayNameRules: Array,
-    emailModel: String,
-    emailRules: Array,
-    passwordModel: String,
-    passwordRules: Array,
+    valid: {
+      required: true,
+    },
+    response: {
+      required: false,
+    },
+    emailModel: {
+      required: true,
+    },
+    emailRules: {
+      required: true,
+    },
+    passwordModel: {
+      required: true,
+    },
+    passwordRules: {
+      required: true,
+    },
+    displayNameModel: {
+      required: true,
+    },
+    displayNameRules: {
+      required: true,
+    },
+    acceptTerms: {
+      required: true
+    }
+
   },
   methods: {
     updateDisplayName(displayName) {
@@ -86,9 +107,12 @@ export default {
     updateClicked(event) {
       this.$emit("acceptTermsChanged", event.target.checked);
     },
-    submit() {
-      this.$emit("submit");
+    submitForm() {
+      this.$emit("submitForm");
     },
+    changeValid(valid) {
+      this.$emit("validChanged", valid)
+    }
   },
 };
 </script>

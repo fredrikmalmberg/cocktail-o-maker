@@ -45,7 +45,6 @@ export default {
   },
   methods: {
     async submit() {
-      console.log("hdjfnjkf")
       if (this.valid) {
         const auth = getAuth()
         signInWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
