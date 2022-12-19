@@ -16,12 +16,9 @@
 
 
 <script>
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-} from 'firebase/auth'
 import {useUserStore} from '@/stores/UserStore';
 import loginView from "@/components/views/loginView";
+import {signIn} from "@/firebaseModel";
 
 export default {
   components: {loginView},
@@ -46,15 +43,15 @@ export default {
   methods: {
     async submit() {
       if (this.valid) {
-        const auth = getAuth()
-        signInWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
-            .then(response => {
-              this.response = response
-              this.$router.push({name: 'userHome'});
-            }).catch(error => {
-          console.log(error)
-          this.loginError = "User not found"
+        signIn(this.emailModel, this.passwordModel).then((response) => {
+          this.response = response;
+          this.$router.push({ name: "userHome" });
         })
+            .catch((error) => {
+              console.log(error);
+              this.loginError = "User not found";
+            });
+
       }
     },
     updateEmailModel(email) {
