@@ -10,6 +10,7 @@
       @emailChanged="updateEmailModel"
       @passwordChanged="updatePasswordModel"
       @submitForm="submit"
+      @validChanged="updateValid"
   />
 </template>
 
@@ -44,8 +45,8 @@ export default {
   },
   methods: {
     async submit() {
-      const validationResult = await this.$refs.form.validate()
-      if (validationResult.valid) {
+      console.log("hdjfnjkf")
+      if (this.valid) {
         const auth = getAuth()
         signInWithEmailAndPassword(auth, this.emailModel, this.passwordModel)
             .then(response => {
@@ -62,6 +63,9 @@ export default {
     },
     updatePasswordModel(password) {
       this.passwordModel = password;
+    },
+    updateValid(valid){
+      this.valid=valid;
     }
 
   },

@@ -2,8 +2,7 @@
   <v-container fill-height @keydown.enter.prevent="submitForm">
     <v-responsive class="d-flex align-center text-center fill-height">
       <v-form
-          ref="form"
-          v-bind:valid="valid"
+          @update:modelValue="changeValid"
           lazy-validation
       >
 
@@ -29,7 +28,7 @@
         <v-btn
             color="orange"
             class="mt-7"
-            @click="submit"
+            @click="submitForm"
             variant="flat"
             block
         >
@@ -78,9 +77,6 @@ export default {
     passwordRules: {
       required: true,
     },
-    submit: {
-      required: true,
-    },
   },
   methods: {
     updateEmail(email) {
@@ -90,8 +86,12 @@ export default {
       this.$emit("passwordChanged", password);
     },
     submitForm() {
-      this.$emit("submit");
+      this.$emit("submitForm");
     },
+    changeValid(valid){
+      this.$emit("validChanged", valid)
+    }
+
   }
   ,
 }
