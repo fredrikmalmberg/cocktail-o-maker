@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import search from '../components/presenters/searchPresenter.vue'
 import HomeView from '../components/presenters/HomePagePresenter.vue'
-import detailsAPITest from '../components/presenters/detailsAPIPresenter.vue'
+import detailsPresenter from '../components/presenters/detailsPresenter.vue'
 import userComponent from '../components/presenters/userPresenter.vue'
 import ingredientsComponent from '../components/presenters/ingredientListPresenter.vue'
 import registerComponent from '../components/presenters/registerComponent.vue'
@@ -18,7 +18,7 @@ const routes = [
   { 
     path: '/drinkdetails/:id', 
     name: 'drinkDetails', 
-    component: detailsAPITest 
+    component: detailsPresenter 
   },
   { 
     path: '/user/', 
