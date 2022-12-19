@@ -1,5 +1,5 @@
 <template>
-    <v-row>
+    <v-row class="section justify-space-around">
     <v-col class="mt-2" cols="12">
         <h2>My Favourites</h2>
       </v-col>
@@ -69,6 +69,16 @@ export default {
     top: -30px;
     position: relative;
     font-weight: bold;
+}
+.section{
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+
 }
 
 </style>
